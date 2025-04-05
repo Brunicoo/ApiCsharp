@@ -168,6 +168,7 @@
     <Compile Include="Controllers\MunicipalitiesController.cs" />
     <Compile Include="Controllers\MusiciansController.cs" />
     <Compile Include="Controllers\Offer_in_StylesController.cs" />
+    <Compile Include="Controllers\PublicationController.cs" />
     <Compile Include="Controllers\RestaurantsController.cs" />
     <Compile Include="Controllers\StylesController.cs" />
     <Compile Include="Controllers\timesController.cs" />
@@ -252,6 +253,7 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="DTOS\PublicationDto.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
@@ -338,6 +340,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Data\avatar\" />
+    <Folder Include="Data\publications\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\bootstrap.min.js.map" />

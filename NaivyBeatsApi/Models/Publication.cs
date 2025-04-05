@@ -15,10 +15,10 @@ namespace NaivyBeatsApi.Models
     public partial class Publication
     {
         public int publication_id { get; set; }
-        public Nullable<System.DateTime> publication_date { get; set; }
+        public string publication_date { get; set; }
         public string description { get; set; }
         public string multimedia_content { get; set; }
-        public Nullable<int> user_id { get; set; }
+        public int user_id { get; set; }
         public string titulo { get; set; }
     }
 }

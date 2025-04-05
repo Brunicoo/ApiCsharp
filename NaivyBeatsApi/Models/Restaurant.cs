@@ -14,10 +14,8 @@ namespace NaivyBeatsApi.Models
     
     public partial class Restaurant: Users
     {
-     
         public string opening_time { get; set; }
         public string closing_time { get; set; }
         public int user_id { get; set; }
-  
     }
 }

@@ -12,6 +12,7 @@ namespace NaivyBeatsApi
             // Configuración y servicios de Web API
             config.Formatters.Remove(config.Formatters.XmlFormatter);
             var json = GlobalConfiguration.Configuration.Formatters.JsonFormatter;
+            config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new System.Net.Http.Headers.MediaTypeHeaderValue("multipart/form-data"));
 
             // Desactivar PreserveReferencesHandling
             json.SerializerSettings.PreserveReferencesHandling = Newtonsoft.Json.PreserveReferencesHandling.None;

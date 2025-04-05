@@ -15,9 +15,9 @@ namespace NaivyBeatsApi.Models
     public partial class Offer_dir
     {
         public int offer_id { get; set; }
-        public Nullable<System.DateTime> publish_date { get; set; }
+        public string publish_date { get; set; }
         public Nullable<int> salary { get; set; }
-        public Nullable<System.DateTime> event_date { get; set; }
+        public string event_date { get; set; }
         public Nullable<byte> agreement { get; set; }
         public Nullable<byte> done { get; set; }
         public Nullable<int> restaurant_id { get; set; }

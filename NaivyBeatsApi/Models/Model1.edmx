@@ -10,7 +10,7 @@
             <PropertyRef Name="chat_id" />
           </Key>
           <Property Name="chat_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="creation_date" Type="date" />
+          <Property Name="creation_date" Type="varchar" MaxLength="50" />
           <Property Name="restaurant_id" Type="int" />
           <Property Name="musician_id" Type="int" />
         </EntityType>
@@ -43,7 +43,7 @@
             <PropertyRef Name="restaurant_id" />
             <PropertyRef Name="publication_id" />
           </Key>
-          <Property Name="publish_date" Type="date" />
+          <Property Name="publish_date" Type="varchar" MaxLength="50" />
           <Property Name="restaurant_id" Type="int" Nullable="false" />
           <Property Name="publication_id" Type="int" Nullable="false" />
         </EntityType>
@@ -53,8 +53,8 @@
           </Key>
           <Property Name="message_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="text" Type="varchar" MaxLength="1000" />
-          <Property Name="publish_date" Type="date" />
-          <Property Name="reading_date" Type="date" />
+          <Property Name="publish_date" Type="varchar" MaxLength="50" />
+          <Property Name="reading_date" Type="varchar" MaxLength="50" />
           <Property Name="chat_id" Type="int" />
           <Property Name="user_id" Type="int" />
         </EntityType>
@@ -77,9 +77,9 @@
             <PropertyRef Name="offer_id" />
           </Key>
           <Property Name="offer_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="publish_date" Type="date" />
+          <Property Name="publish_date" Type="varchar" MaxLength="50" />
           <Property Name="salary" Type="int" />
-          <Property Name="event_date" Type="datetime" />
+          <Property Name="event_date" Type="varchar" MaxLength="50" />
           <Property Name="agreement" Type="tinyint" />
           <Property Name="done" Type="tinyint" />
           <Property Name="restaurant_id" Type="int" />
@@ -111,7 +111,7 @@
             <PropertyRef Name="publication_id" />
           </Key>
           <Property Name="publication_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="publication_date" Type="date" />
+          <Property Name="publication_date" Type="varchar" MaxLength="50" />
           <Property Name="description" Type="varchar" MaxLength="1000" />
           <Property Name="multimedia_content" Type="varchar" MaxLength="255" />
           <Property Name="user_id" Type="int" />
@@ -141,7 +141,7 @@
           <Property Name="email" Type="varchar" MaxLength="100" />
           <Property Name="password" Type="varchar" MaxLength="100" />
           <Property Name="role" Type="varchar" MaxLength="100" />
-          <Property Name="delete_at" Type="date" />
+          <Property Name="delete_at" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Ticket">
           <Key>
@@ -150,8 +150,8 @@
           <Property Name="ticket_id" Type="int" Nullable="false" />
           <Property Name="description" Type="varchar" MaxLength="1000" />
           <Property Name="type" Type="varchar" MaxLength="100" />
-          <Property Name="creation_date" Type="date" />
-          <Property Name="closing_date" Type="date" />
+          <Property Name="creation_date" Type="varchar" MaxLength="50" />
+          <Property Name="closing_date" Type="varchar" MaxLength="50" />
           <Property Name="user_id" Type="int" />
           <Property Name="user_id_admin" Type="int" />
           <Property Name="subject" Type="nvarchar" MaxLength="255" Nullable="false" />
@@ -191,10 +191,10 @@
           <Property Name="photo" Type="varchar" MaxLength="255" />
           <Property Name="email" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="password" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="phone_number" Type="int" Nullable="false" />
-          <Property Name="creation_date" Type="date" />
-          <Property Name="edition_date" Type="date" />
-          <Property Name="deleted_at" Type="date" />
+          <Property Name="phone_number" Type="varchar" MaxLength="50" />
+          <Property Name="creation_date" Type="varchar" MaxLength="50" />
+          <Property Name="edition_date" Type="varchar" MaxLength="50" />
+          <Property Name="deleted_at" Type="varchar" MaxLength="50" />
           <Property Name="municipality_id" Type="int" />
           <Property Name="latitud" Type="decimal" Precision="10" Scale="8" />
           <Property Name="longitud" Type="decimal" Precision="11" Scale="8" />
@@ -709,7 +709,7 @@
             <PropertyRef Name="chat_id" />
           </Key>
           <Property Name="chat_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="creation_date" Type="DateTime" Precision="0" />
+          <Property Name="creation_date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="restaurant_id" Type="Int32" />
           <Property Name="musician_id" Type="Int32" />
         </EntityType>
@@ -734,7 +734,7 @@
             <PropertyRef Name="restaurant_id" />
             <PropertyRef Name="publication_id" />
           </Key>
-          <Property Name="publish_date" Type="DateTime" Precision="0" />
+          <Property Name="publish_date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="restaurant_id" Type="Int32" Nullable="false" />
           <Property Name="publication_id" Type="Int32" Nullable="false" />
         </EntityType>
@@ -744,12 +744,10 @@
           </Key>
           <Property Name="message_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="text" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
-          <Property Name="publish_date" Type="DateTime" Precision="0" />
-          <Property Name="reading_date" Type="DateTime" Precision="0" />
+          <Property Name="publish_date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="reading_date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="chat_id" Type="Int32" />
           <Property Name="user_id" Type="Int32" />
-          <NavigationProperty Name="Chat" Relationship="Self.FK__Message__chat_id__7A672E12" FromRole="Message" ToRole="Chat" />
-          <NavigationProperty Name="Users" Relationship="Self.FK__Message__user_id__7B5B524B" FromRole="Message" ToRole="Users" />
         </EntityType>
         <EntityType Name="Municipality">
           <Key>
@@ -770,9 +768,9 @@
             <PropertyRef Name="offer_id" />
           </Key>
           <Property Name="offer_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="publish_date" Type="DateTime" Precision="0" />
+          <Property Name="publish_date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="salary" Type="Int32" />
-          <Property Name="event_date" Type="DateTime" Precision="3" />
+          <Property Name="event_date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="agreement" Type="Byte" />
           <Property Name="done" Type="Byte" />
           <Property Name="restaurant_id" Type="Int32" />
@@ -804,7 +802,7 @@
             <PropertyRef Name="publication_id" />
           </Key>
           <Property Name="publication_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="publication_date" Type="DateTime" Precision="0" />
+          <Property Name="publication_date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="description" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
           <Property Name="multimedia_content" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="user_id" Type="Int32" />
@@ -834,7 +832,7 @@
           <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="role" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="delete_at" Type="DateTime" Precision="0" />
+          <Property Name="delete_at" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Ticket">
           <Key>
@@ -843,8 +841,8 @@
           <Property Name="ticket_id" Type="Int32" Nullable="false" />
           <Property Name="description" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
           <Property Name="type" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="creation_date" Type="DateTime" Precision="0" />
-          <Property Name="closing_date" Type="DateTime" Precision="0" />
+          <Property Name="creation_date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="closing_date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="user_id" Type="Int32" />
           <Property Name="user_id_admin" Type="Int32" />
           <Property Name="subject" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
@@ -884,10 +882,10 @@
           <Property Name="photo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="phone_number" Type="Int32" Nullable="false" />
-          <Property Name="creation_date" Type="DateTime" Precision="0" />
-          <Property Name="edition_date" Type="DateTime" Precision="0" />
-          <Property Name="deleted_at" Type="DateTime" Precision="0" />
+          <Property Name="phone_number" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="creation_date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="edition_date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="deleted_at" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="municipality_id" Type="Int32" />
           <Property Name="latitud" Type="Decimal" Precision="10" Scale="8" />
           <Property Name="longitud" Type="Decimal" Precision="11" Scale="8" />
@@ -1233,7 +1231,7 @@
           <End Role="Musician" Type="Self.Musician" Multiplicity="*" />
           <End Role="Restaurant" Type="Self.Restaurant" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="NaivyBeatsEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="NaivyBeatsEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Chat" EntityType="Self.Chat" />
           <EntitySet Name="City" EntityType="Self.City" />
           <EntitySet Name="Comment_Restaurant_Publication" EntityType="Self.Comment_Restaurant_Publication" />
@@ -1372,7 +1370,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="NaivyBeatsModelStoreContainer" CdmEntityContainer="NaivyBeatsEntities">
+        <EntityContainerMapping StorageEntityContainer="NaivyBeatsModelStoreContainer" CdmEntityContainer="NaivyBeatsEntities1">
           <EntitySetMapping Name="Chat">
             <EntityTypeMapping TypeName="NaivyBeatsModel.Chat">
               <MappingFragment StoreEntitySet="Chat">

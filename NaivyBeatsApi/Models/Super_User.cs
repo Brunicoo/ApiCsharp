@@ -19,6 +19,6 @@ namespace NaivyBeatsApi.Models
         public string email { get; set; }
         public string password { get; set; }
         public string role { get; set; }
-        public Nullable<System.DateTime> delete_at { get; set; }
+        public string delete_at { get; set; }
     }
 }

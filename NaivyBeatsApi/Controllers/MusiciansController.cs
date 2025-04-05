@@ -83,14 +83,15 @@ namespace NaivyBeatsApi.Controllers
         {
             
             Users usu = new Users();
+        
 
             usu.name = musician.name;
             usu.photo = musician.photo;
             usu.email = musician.email;
             usu.password = musician.password;
             usu.phone_number = musician.phone_number;
-            usu.creation_date = DateTime.Now.Date;
-            usu.edition_date = DateTime.Now.Date;
+            usu.creation_date = DateTime.Now.Date.ToString("yyyy-MM-dd");
+            usu.edition_date = DateTime.Now.Date.ToString("yyyy-MM-dd");
             usu.municipality_id = musician.municipality_id;
             usu.latitud = musician.latitud;
             usu.longitud = musician.longitud;

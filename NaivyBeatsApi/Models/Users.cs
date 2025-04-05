@@ -19,10 +19,10 @@ namespace NaivyBeatsApi.Models
         public string photo { get; set; }
         public string email { get; set; }
         public string password { get; set; }
-        public int phone_number { get; set; }
-        public Nullable<System.DateTime> creation_date { get; set; }
-        public Nullable<System.DateTime> edition_date { get; set; }
-        public Nullable<System.DateTime> deleted_at { get; set; }
+        public string phone_number { get; set; }
+        public string creation_date { get; set; }
+        public string edition_date { get; set; }
+        public string deleted_at { get; set; }
         public Nullable<int> municipality_id { get; set; }
         public Nullable<decimal> latitud { get; set; }
         public Nullable<decimal> longitud { get; set; }

@@ -14,7 +14,7 @@ namespace NaivyBeatsApi.Models
     
     public partial class Like_Restaurant_Publication
     {
-        public Nullable<System.DateTime> publish_date { get; set; }
+        public string publish_date { get; set; }
         public int restaurant_id { get; set; }
         public int publication_id { get; set; }
     }

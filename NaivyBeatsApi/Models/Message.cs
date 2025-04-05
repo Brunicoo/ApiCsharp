@@ -16,12 +16,9 @@ namespace NaivyBeatsApi.Models
     {
         public int message_id { get; set; }
         public string text { get; set; }
-        public Nullable<System.DateTime> publish_date { get; set; }
-        public Nullable<System.DateTime> reading_date { get; set; }
+        public string publish_date { get; set; }
+        public string reading_date { get; set; }
         public Nullable<int> chat_id { get; set; }
         public Nullable<int> user_id { get; set; }
-    
-        public virtual Chat Chat { get; set; }
-        public virtual Users Users { get; set; }
     }
 }

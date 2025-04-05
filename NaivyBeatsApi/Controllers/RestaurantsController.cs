@@ -93,8 +93,8 @@ namespace NaivyBeatsApi.Controllers
             usu.email = res.email;
             usu.password = res.password;
             usu.phone_number = res.phone_number;
-            usu.creation_date = DateTime.Now.Date;
-            usu.edition_date = DateTime.Now.Date;
+            usu.creation_date = DateTime.Now.Date.ToString("yyyy-MM-dd");
+            usu.edition_date = DateTime.Now.Date.ToString("yyyy-MM-dd");
             usu.municipality_id = res.municipality_id;
             usu.latitud = res.latitud;
             usu.longitud = res.longitud;
