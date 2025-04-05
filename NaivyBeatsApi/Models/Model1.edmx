@@ -1,0 +1,1509 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="NaivyBeatsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Chat">
+          <Key>
+            <PropertyRef Name="chat_id" />
+          </Key>
+          <Property Name="chat_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="creation_date" Type="date" />
+          <Property Name="restaurant_id" Type="int" />
+          <Property Name="musician_id" Type="int" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="city_id" />
+          </Key>
+          <Property Name="city_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Comment_Restaurant_Publication">
+          <Key>
+            <PropertyRef Name="comment_id" />
+          </Key>
+          <Property Name="comment_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="content" Type="varchar" MaxLength="1000" />
+          <Property Name="publication_id" Type="int" />
+          <Property Name="user_id" Type="int" />
+        </EntityType>
+        <EntityType Name="Follow">
+          <Key>
+            <PropertyRef Name="musician_id" />
+            <PropertyRef Name="restaurant_id" />
+          </Key>
+          <Property Name="musician_id" Type="int" Nullable="false" />
+          <Property Name="restaurant_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Like_Restaurant_Publication">
+          <Key>
+            <PropertyRef Name="restaurant_id" />
+            <PropertyRef Name="publication_id" />
+          </Key>
+          <Property Name="publish_date" Type="date" />
+          <Property Name="restaurant_id" Type="int" Nullable="false" />
+          <Property Name="publication_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Message">
+          <Key>
+            <PropertyRef Name="message_id" />
+          </Key>
+          <Property Name="message_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="text" Type="varchar" MaxLength="1000" />
+          <Property Name="publish_date" Type="date" />
+          <Property Name="reading_date" Type="date" />
+          <Property Name="chat_id" Type="int" />
+          <Property Name="user_id" Type="int" />
+        </EntityType>
+        <EntityType Name="Municipality">
+          <Key>
+            <PropertyRef Name="municipality_id" />
+          </Key>
+          <Property Name="municipality_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="city_id" Type="int" />
+        </EntityType>
+        <EntityType Name="Musician">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Offer_dir">
+          <Key>
+            <PropertyRef Name="offer_id" />
+          </Key>
+          <Property Name="offer_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="publish_date" Type="date" />
+          <Property Name="salary" Type="int" />
+          <Property Name="event_date" Type="datetime" />
+          <Property Name="agreement" Type="tinyint" />
+          <Property Name="done" Type="tinyint" />
+          <Property Name="restaurant_id" Type="int" />
+          <Property Name="musician_id" Type="int" />
+        </EntityType>
+        <EntityType Name="Offer_In">
+          <Key>
+            <PropertyRef Name="offer_in_id" />
+          </Key>
+          <Property Name="offer_in_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="publish_date" Type="date" />
+          <Property Name="salary" Type="int" />
+          <Property Name="event_date" Type="datetime" />
+          <Property Name="music_id_final" Type="int" />
+          <Property Name="restaurant_id" Type="int" />
+        </EntityType>
+        <EntityType Name="Publication">
+          <Key>
+            <PropertyRef Name="publication_id" />
+          </Key>
+          <Property Name="publication_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="publication_date" Type="date" />
+          <Property Name="description" Type="varchar" MaxLength="1000" />
+          <Property Name="multimedia_content" Type="varchar" MaxLength="255" />
+          <Property Name="user_id" Type="int" />
+        </EntityType>
+        <EntityType Name="Restaurant">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="opening_time" Type="varchar" MaxLength="5" />
+          <Property Name="closing_time" Type="varchar" MaxLength="5" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Style">
+          <Key>
+            <PropertyRef Name="style_id" />
+          </Key>
+          <Property Name="style_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Super_User">
+          <Key>
+            <PropertyRef Name="user_id_admin" />
+          </Key>
+          <Property Name="user_id_admin" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="100" />
+          <Property Name="email" Type="varchar" MaxLength="100" />
+          <Property Name="password" Type="varchar" MaxLength="100" />
+          <Property Name="role" Type="varchar" MaxLength="100" />
+          <Property Name="delete_at" Type="date" />
+        </EntityType>
+        <EntityType Name="Ticket">
+          <Key>
+            <PropertyRef Name="ticket_id" />
+          </Key>
+          <Property Name="ticket_id" Type="int" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="1000" />
+          <Property Name="type" Type="varchar" MaxLength="100" />
+          <Property Name="creation_date" Type="date" />
+          <Property Name="closing_date" Type="date" />
+          <Property Name="user_id" Type="int" />
+          <Property Name="user_id_admin" Type="int" />
+        </EntityType>
+        <EntityType Name="time">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User_Style">
+          <Key>
+            <PropertyRef Name="user_id" />
+            <PropertyRef Name="style_id" />
+          </Key>
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="style_id" Type="int" Nullable="false" />
+          <Property Name="creation_date" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User_Time">
+          <Key>
+            <PropertyRef Name="user_id" />
+            <PropertyRef Name="time_id" />
+          </Key>
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="time_id" Type="int" Nullable="false" />
+          <Property Name="creation_date" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="photo" Type="varchar" MaxLength="255" />
+          <Property Name="email" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="phone_number" Type="int" Nullable="false" />
+          <Property Name="creation_date" Type="date" />
+          <Property Name="edition_date" Type="date" />
+          <Property Name="deleted_at" Type="date" />
+          <Property Name="municipality_id" Type="int" />
+          <Property Name="latitud" Type="decimal" Precision="10" Scale="8" />
+          <Property Name="longitud" Type="decimal" Precision="11" Scale="8" />
+        </EntityType>
+        <EntityType Name="Valorar">
+          <Key>
+            <PropertyRef Name="appraiser_id" />
+            <PropertyRef Name="valued_id" />
+          </Key>
+          <Property Name="puntuation" Type="int" />
+          <Property Name="comment" Type="varchar" MaxLength="1000" />
+          <Property Name="appraiser_id" Type="int" Nullable="false" />
+          <Property Name="valued_id" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Chat__musician_i__5BE2A6F2">
+          <End Role="Musician" Type="Self.Musician" Multiplicity="0..1" />
+          <End Role="Chat" Type="Self.Chat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Musician">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Chat">
+              <PropertyRef Name="musician_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Chat__restaurant__5CD6CB2B">
+          <End Role="Restaurant" Type="Self.Restaurant" Multiplicity="0..1" />
+          <End Role="Chat" Type="Self.Chat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Restaurant">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Chat">
+              <PropertyRef Name="restaurant_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Comment_R__publi__5DCAEF64">
+          <End Role="Publication" Type="Self.Publication" Multiplicity="0..1" />
+          <End Role="Comment_Restaurant_Publication" Type="Self.Comment_Restaurant_Publication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publication">
+              <PropertyRef Name="publication_id" />
+            </Principal>
+            <Dependent Role="Comment_Restaurant_Publication">
+              <PropertyRef Name="publication_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Comment_R__user___5EBF139D">
+          <End Role="Restaurant" Type="Self.Restaurant" Multiplicity="0..1" />
+          <End Role="Comment_Restaurant_Publication" Type="Self.Comment_Restaurant_Publication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Restaurant">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Comment_Restaurant_Publication">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Follow__musician__5FB337D6">
+          <End Role="Musician" Type="Self.Musician" Multiplicity="1" />
+          <End Role="Follow" Type="Self.Follow" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Musician">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Follow">
+              <PropertyRef Name="musician_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Follow__restaura__60A75C0F">
+          <End Role="Restaurant" Type="Self.Restaurant" Multiplicity="1" />
+          <End Role="Follow" Type="Self.Follow" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Restaurant">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Follow">
+              <PropertyRef Name="restaurant_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Like_Rest__publi__619B8048">
+          <End Role="Publication" Type="Self.Publication" Multiplicity="1" />
+          <End Role="Like_Restaurant_Publication" Type="Self.Like_Restaurant_Publication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publication">
+              <PropertyRef Name="publication_id" />
+            </Principal>
+            <Dependent Role="Like_Restaurant_Publication">
+              <PropertyRef Name="publication_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Like_Rest__resta__628FA481">
+          <End Role="Restaurant" Type="Self.Restaurant" Multiplicity="1" />
+          <End Role="Like_Restaurant_Publication" Type="Self.Like_Restaurant_Publication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Restaurant">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Like_Restaurant_Publication">
+              <PropertyRef Name="restaurant_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Message__chat_id__6383C8BA">
+          <End Role="Chat" Type="Self.Chat" Multiplicity="0..1" />
+          <End Role="Message" Type="Self.Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Chat">
+              <PropertyRef Name="chat_id" />
+            </Principal>
+            <Dependent Role="Message">
+              <PropertyRef Name="chat_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Message__user_id__6477ECF3">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Message" Type="Self.Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Message">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Musician__user_i__66603565">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Musician" Type="Self.Musician" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Musician">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Offer_dir__music__6754599E">
+          <End Role="Musician" Type="Self.Musician" Multiplicity="0..1" />
+          <End Role="Offer_dir" Type="Self.Offer_dir" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Musician">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Offer_dir">
+              <PropertyRef Name="musician_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Offer_dir__resta__68487DD7">
+          <End Role="Restaurant" Type="Self.Restaurant" Multiplicity="0..1" />
+          <End Role="Offer_dir" Type="Self.Offer_dir" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Restaurant">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Offer_dir">
+              <PropertyRef Name="restaurant_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Offer_In__music___693CA210">
+          <End Role="Musician" Type="Self.Musician" Multiplicity="0..1" />
+          <End Role="Offer_In" Type="Self.Offer_In" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Musician">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Offer_In">
+              <PropertyRef Name="music_id_final" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Offer_In__restau__6A30C649">
+          <End Role="Restaurant" Type="Self.Restaurant" Multiplicity="0..1" />
+          <End Role="Offer_In" Type="Self.Offer_In" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Restaurant">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Offer_In">
+              <PropertyRef Name="restaurant_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Publicati__user___6B24EA82">
+          <End Role="Musician" Type="Self.Musician" Multiplicity="0..1" />
+          <End Role="Publication" Type="Self.Publication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Musician">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Publication">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Restauran__user___6C190EBB">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Restaurant" Type="Self.Restaurant" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Restaurant">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ticket__user_id___6D0D32F4">
+          <End Role="Super_User" Type="Self.Super_User" Multiplicity="0..1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Super_User">
+              <PropertyRef Name="user_id_admin" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="user_id_admin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ticket__user_id__6E01572D">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__User_Styl__style__6EF57B66">
+          <End Role="Style" Type="Self.Style" Multiplicity="1" />
+          <End Role="User_Style" Type="Self.User_Style" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Style">
+              <PropertyRef Name="style_id" />
+            </Principal>
+            <Dependent Role="User_Style">
+              <PropertyRef Name="style_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__User_Time__time___70DDC3D8">
+          <End Role="time" Type="Self.time" Multiplicity="1" />
+          <End Role="User_Time" Type="Self.User_Time" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="time">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="User_Time">
+              <PropertyRef Name="time_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__User_Time__user___71D1E811">
+          <End Role="Musician" Type="Self.Musician" Multiplicity="1" />
+          <End Role="User_Time" Type="Self.User_Time" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Musician">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="User_Time">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Valorar__apprais__73BA3083">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Valorar" Type="Self.Valorar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Valorar">
+              <PropertyRef Name="appraiser_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Valorar__valued___74AE54BC">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Valorar" Type="Self.Valorar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Valorar">
+              <PropertyRef Name="valued_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_municipality_city">
+          <End Role="City" Type="Self.City" Multiplicity="0..1" />
+          <End Role="Municipality" Type="Self.Municipality" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="city_id" />
+            </Principal>
+            <Dependent Role="Municipality">
+              <PropertyRef Name="city_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Style_Musician">
+          <End Role="Musician" Type="Self.Musician" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="User_Style" Type="Self.User_Style" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Musician">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="User_Style">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_users_municipality">
+          <End Role="Municipality" Type="Self.Municipality" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Municipality">
+              <PropertyRef Name="municipality_id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="municipality_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="NaivyBeatsModelStoreContainer">
+          <EntitySet Name="Chat" EntityType="Self.Chat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Comment_Restaurant_Publication" EntityType="Self.Comment_Restaurant_Publication" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Follow" EntityType="Self.Follow" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Like_Restaurant_Publication" EntityType="Self.Like_Restaurant_Publication" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Message" EntityType="Self.Message" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Municipality" EntityType="Self.Municipality" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Musician" EntityType="Self.Musician" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Offer_dir" EntityType="Self.Offer_dir" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Offer_In" EntityType="Self.Offer_In" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Publication" EntityType="Self.Publication" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Restaurant" EntityType="Self.Restaurant" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Style" EntityType="Self.Style" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Super_User" EntityType="Self.Super_User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ticket" EntityType="Self.Ticket" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="time" EntityType="Self.time" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User_Style" EntityType="Self.User_Style" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User_Time" EntityType="Self.User_Time" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Valorar" EntityType="Self.Valorar" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Chat__musician_i__5BE2A6F2" Association="Self.FK__Chat__musician_i__5BE2A6F2">
+            <End Role="Musician" EntitySet="Musician" />
+            <End Role="Chat" EntitySet="Chat" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Chat__restaurant__5CD6CB2B" Association="Self.FK__Chat__restaurant__5CD6CB2B">
+            <End Role="Restaurant" EntitySet="Restaurant" />
+            <End Role="Chat" EntitySet="Chat" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Comment_R__publi__5DCAEF64" Association="Self.FK__Comment_R__publi__5DCAEF64">
+            <End Role="Publication" EntitySet="Publication" />
+            <End Role="Comment_Restaurant_Publication" EntitySet="Comment_Restaurant_Publication" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Comment_R__user___5EBF139D" Association="Self.FK__Comment_R__user___5EBF139D">
+            <End Role="Restaurant" EntitySet="Restaurant" />
+            <End Role="Comment_Restaurant_Publication" EntitySet="Comment_Restaurant_Publication" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Follow__musician__5FB337D6" Association="Self.FK__Follow__musician__5FB337D6">
+            <End Role="Musician" EntitySet="Musician" />
+            <End Role="Follow" EntitySet="Follow" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Follow__restaura__60A75C0F" Association="Self.FK__Follow__restaura__60A75C0F">
+            <End Role="Restaurant" EntitySet="Restaurant" />
+            <End Role="Follow" EntitySet="Follow" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Like_Rest__publi__619B8048" Association="Self.FK__Like_Rest__publi__619B8048">
+            <End Role="Publication" EntitySet="Publication" />
+            <End Role="Like_Restaurant_Publication" EntitySet="Like_Restaurant_Publication" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Like_Rest__resta__628FA481" Association="Self.FK__Like_Rest__resta__628FA481">
+            <End Role="Restaurant" EntitySet="Restaurant" />
+            <End Role="Like_Restaurant_Publication" EntitySet="Like_Restaurant_Publication" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Message__chat_id__6383C8BA" Association="Self.FK__Message__chat_id__6383C8BA">
+            <End Role="Chat" EntitySet="Chat" />
+            <End Role="Message" EntitySet="Message" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Message__user_id__6477ECF3" Association="Self.FK__Message__user_id__6477ECF3">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Message" EntitySet="Message" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Musician__user_i__66603565" Association="Self.FK__Musician__user_i__66603565">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Musician" EntitySet="Musician" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Offer_dir__music__6754599E" Association="Self.FK__Offer_dir__music__6754599E">
+            <End Role="Musician" EntitySet="Musician" />
+            <End Role="Offer_dir" EntitySet="Offer_dir" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Offer_dir__resta__68487DD7" Association="Self.FK__Offer_dir__resta__68487DD7">
+            <End Role="Restaurant" EntitySet="Restaurant" />
+            <End Role="Offer_dir" EntitySet="Offer_dir" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Offer_In__music___693CA210" Association="Self.FK__Offer_In__music___693CA210">
+            <End Role="Musician" EntitySet="Musician" />
+            <End Role="Offer_In" EntitySet="Offer_In" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Offer_In__restau__6A30C649" Association="Self.FK__Offer_In__restau__6A30C649">
+            <End Role="Restaurant" EntitySet="Restaurant" />
+            <End Role="Offer_In" EntitySet="Offer_In" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Publicati__user___6B24EA82" Association="Self.FK__Publicati__user___6B24EA82">
+            <End Role="Musician" EntitySet="Musician" />
+            <End Role="Publication" EntitySet="Publication" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Restauran__user___6C190EBB" Association="Self.FK__Restauran__user___6C190EBB">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Restaurant" EntitySet="Restaurant" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ticket__user_id___6D0D32F4" Association="Self.FK__Ticket__user_id___6D0D32F4">
+            <End Role="Super_User" EntitySet="Super_User" />
+            <End Role="Ticket" EntitySet="Ticket" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ticket__user_id__6E01572D" Association="Self.FK__Ticket__user_id__6E01572D">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Ticket" EntitySet="Ticket" />
+          </AssociationSet>
+          <AssociationSet Name="FK__User_Styl__style__6EF57B66" Association="Self.FK__User_Styl__style__6EF57B66">
+            <End Role="Style" EntitySet="Style" />
+            <End Role="User_Style" EntitySet="User_Style" />
+          </AssociationSet>
+          <AssociationSet Name="FK__User_Time__time___70DDC3D8" Association="Self.FK__User_Time__time___70DDC3D8">
+            <End Role="time" EntitySet="time" />
+            <End Role="User_Time" EntitySet="User_Time" />
+          </AssociationSet>
+          <AssociationSet Name="FK__User_Time__user___71D1E811" Association="Self.FK__User_Time__user___71D1E811">
+            <End Role="Musician" EntitySet="Musician" />
+            <End Role="User_Time" EntitySet="User_Time" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Valorar__apprais__73BA3083" Association="Self.FK__Valorar__apprais__73BA3083">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Valorar" EntitySet="Valorar" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Valorar__valued___74AE54BC" Association="Self.FK__Valorar__valued___74AE54BC">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Valorar" EntitySet="Valorar" />
+          </AssociationSet>
+          <AssociationSet Name="fk_municipality_city" Association="Self.fk_municipality_city">
+            <End Role="City" EntitySet="City" />
+            <End Role="Municipality" EntitySet="Municipality" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Style_Musician" Association="Self.FK_User_Style_Musician">
+            <End Role="Musician" EntitySet="Musician" />
+            <End Role="User_Style" EntitySet="User_Style" />
+          </AssociationSet>
+          <AssociationSet Name="fk_users_municipality" Association="Self.fk_users_municipality">
+            <End Role="Municipality" EntitySet="Municipality" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="NaivyBeatsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Chat">
+          <Key>
+            <PropertyRef Name="chat_id" />
+          </Key>
+          <Property Name="chat_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="creation_date" Type="DateTime" Precision="0" />
+          <Property Name="restaurant_id" Type="Int32" />
+          <Property Name="musician_id" Type="Int32" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="city_id" />
+          </Key>
+          <Property Name="city_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Comment_Restaurant_Publication">
+          <Key>
+            <PropertyRef Name="comment_id" />
+          </Key>
+          <Property Name="comment_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="content" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="publication_id" Type="Int32" />
+          <Property Name="user_id" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Like_Restaurant_Publication">
+          <Key>
+            <PropertyRef Name="restaurant_id" />
+            <PropertyRef Name="publication_id" />
+          </Key>
+          <Property Name="publish_date" Type="DateTime" Precision="0" />
+          <Property Name="restaurant_id" Type="Int32" Nullable="false" />
+          <Property Name="publication_id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Message">
+          <Key>
+            <PropertyRef Name="message_id" />
+          </Key>
+          <Property Name="message_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="text" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="publish_date" Type="DateTime" Precision="0" />
+          <Property Name="reading_date" Type="DateTime" Precision="0" />
+          <Property Name="chat_id" Type="Int32" />
+          <Property Name="user_id" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Municipality">
+          <Key>
+            <PropertyRef Name="municipality_id" />
+          </Key>
+          <Property Name="municipality_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="city_id" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Musician">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Offer_dir">
+          <Key>
+            <PropertyRef Name="offer_id" />
+          </Key>
+          <Property Name="offer_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="publish_date" Type="DateTime" Precision="0" />
+          <Property Name="salary" Type="Int32" />
+          <Property Name="event_date" Type="DateTime" Precision="3" />
+          <Property Name="agreement" Type="Byte" />
+          <Property Name="done" Type="Byte" />
+          <Property Name="restaurant_id" Type="Int32" />
+          <Property Name="musician_id" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Offer_In">
+          <Key>
+            <PropertyRef Name="offer_in_id" />
+          </Key>
+          <Property Name="offer_in_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="publish_date" Type="DateTime" Precision="0" />
+          <Property Name="salary" Type="Int32" />
+          <Property Name="event_date" Type="DateTime" Precision="3" />
+          <Property Name="music_id_final" Type="Int32" />
+          <Property Name="restaurant_id" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Publication">
+          <Key>
+            <PropertyRef Name="publication_id" />
+          </Key>
+          <Property Name="publication_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="publication_date" Type="DateTime" Precision="0" />
+          <Property Name="description" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="multimedia_content" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="user_id" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Restaurant">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="opening_time" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="closing_time" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Style">
+          <Key>
+            <PropertyRef Name="style_id" />
+          </Key>
+          <Property Name="style_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Super_User">
+          <Key>
+            <PropertyRef Name="user_id_admin" />
+          </Key>
+          <Property Name="user_id_admin" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="role" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="delete_at" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="Ticket">
+          <Key>
+            <PropertyRef Name="ticket_id" />
+          </Key>
+          <Property Name="ticket_id" Type="Int32" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="type" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="creation_date" Type="DateTime" Precision="0" />
+          <Property Name="closing_date" Type="DateTime" Precision="0" />
+          <Property Name="user_id" Type="Int32" />
+          <Property Name="user_id_admin" Type="Int32" />
+        </EntityType>
+        <EntityType Name="time">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User_Style">
+          <Key>
+            <PropertyRef Name="user_id" />
+            <PropertyRef Name="style_id" />
+          </Key>
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="style_id" Type="Int32" Nullable="false" />
+          <Property Name="creation_date" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+        <EntityType Name="User_Time">
+          <Key>
+            <PropertyRef Name="user_id" />
+            <PropertyRef Name="time_id" />
+          </Key>
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="time_id" Type="Int32" Nullable="false" />
+          <Property Name="creation_date" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="photo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="phone_number" Type="Int32" Nullable="false" />
+          <Property Name="creation_date" Type="DateTime" Precision="0" />
+          <Property Name="edition_date" Type="DateTime" Precision="0" />
+          <Property Name="deleted_at" Type="DateTime" Precision="0" />
+          <Property Name="municipality_id" Type="Int32" />
+          <Property Name="latitud" Type="Decimal" Precision="10" Scale="8" />
+          <Property Name="longitud" Type="Decimal" Precision="11" Scale="8" />
+        </EntityType>
+        <EntityType Name="Valorar">
+          <Key>
+            <PropertyRef Name="appraiser_id" />
+            <PropertyRef Name="valued_id" />
+          </Key>
+          <Property Name="puntuation" Type="Int32" />
+          <Property Name="comment" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="appraiser_id" Type="Int32" Nullable="false" />
+          <Property Name="valued_id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Chat__musician_i__5BE2A6F2">
+          <End Role="Musician" Type="Self.Musician" Multiplicity="0..1" />
+          <End Role="Chat" Type="Self.Chat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Musician">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Chat">
+              <PropertyRef Name="musician_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Chat__restaurant__5CD6CB2B">
+          <End Role="Restaurant" Type="Self.Restaurant" Multiplicity="0..1" />
+          <End Role="Chat" Type="Self.Chat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Restaurant">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Chat">
+              <PropertyRef Name="restaurant_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Message__chat_id__6383C8BA">
+          <End Role="Chat" Type="Self.Chat" Multiplicity="0..1" />
+          <End Role="Message" Type="Self.Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Chat">
+              <PropertyRef Name="chat_id" />
+            </Principal>
+            <Dependent Role="Message">
+              <PropertyRef Name="chat_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_municipality_city">
+          <End Role="City" Type="Self.City" Multiplicity="0..1" />
+          <End Role="Municipality" Type="Self.Municipality" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="city_id" />
+            </Principal>
+            <Dependent Role="Municipality">
+              <PropertyRef Name="city_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Comment_R__publi__5DCAEF64">
+          <End Role="Publication" Type="Self.Publication" Multiplicity="0..1" />
+          <End Role="Comment_Restaurant_Publication" Type="Self.Comment_Restaurant_Publication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publication">
+              <PropertyRef Name="publication_id" />
+            </Principal>
+            <Dependent Role="Comment_Restaurant_Publication">
+              <PropertyRef Name="publication_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Comment_R__user___5EBF139D">
+          <End Role="Restaurant" Type="Self.Restaurant" Multiplicity="0..1" />
+          <End Role="Comment_Restaurant_Publication" Type="Self.Comment_Restaurant_Publication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Restaurant">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Comment_Restaurant_Publication">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Like_Rest__publi__619B8048">
+          <End Role="Publication" Type="Self.Publication" Multiplicity="1" />
+          <End Role="Like_Restaurant_Publication" Type="Self.Like_Restaurant_Publication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publication">
+              <PropertyRef Name="publication_id" />
+            </Principal>
+            <Dependent Role="Like_Restaurant_Publication">
+              <PropertyRef Name="publication_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Like_Rest__resta__628FA481">
+          <End Role="Restaurant" Type="Self.Restaurant" Multiplicity="1" />
+          <End Role="Like_Restaurant_Publication" Type="Self.Like_Restaurant_Publication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Restaurant">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Like_Restaurant_Publication">
+              <PropertyRef Name="restaurant_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Message__user_id__6477ECF3">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Message" Type="Self.Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Message">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_users_municipality">
+          <End Role="Municipality" Type="Self.Municipality" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Municipality">
+              <PropertyRef Name="municipality_id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="municipality_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Musician__user_i__66603565">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Musician" Type="Self.Musician" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Musician">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Offer_dir__music__6754599E">
+          <End Role="Musician" Type="Self.Musician" Multiplicity="0..1" />
+          <End Role="Offer_dir" Type="Self.Offer_dir" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Musician">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Offer_dir">
+              <PropertyRef Name="musician_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Offer_In__music___693CA210">
+          <End Role="Musician" Type="Self.Musician" Multiplicity="0..1" />
+          <End Role="Offer_In" Type="Self.Offer_In" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Musician">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Offer_In">
+              <PropertyRef Name="music_id_final" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Publicati__user___6B24EA82">
+          <End Role="Musician" Type="Self.Musician" Multiplicity="0..1" />
+          <End Role="Publication" Type="Self.Publication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Musician">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Publication">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__User_Time__user___71D1E811">
+          <End Role="Musician" Type="Self.Musician" Multiplicity="1" />
+          <End Role="User_Time" Type="Self.User_Time" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Musician">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="User_Time">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Style_Musician">
+          <End Role="Musician" Type="Self.Musician" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="User_Style" Type="Self.User_Style" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Musician">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="User_Style">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Offer_dir__resta__68487DD7">
+          <End Role="Restaurant" Type="Self.Restaurant" Multiplicity="0..1" />
+          <End Role="Offer_dir" Type="Self.Offer_dir" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Restaurant">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Offer_dir">
+              <PropertyRef Name="restaurant_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Offer_In__restau__6A30C649">
+          <End Role="Restaurant" Type="Self.Restaurant" Multiplicity="0..1" />
+          <End Role="Offer_In" Type="Self.Offer_In" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Restaurant">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Offer_In">
+              <PropertyRef Name="restaurant_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Restauran__user___6C190EBB">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Restaurant" Type="Self.Restaurant" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Restaurant">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__User_Styl__style__6EF57B66">
+          <End Role="Style" Type="Self.Style" Multiplicity="1" />
+          <End Role="User_Style" Type="Self.User_Style" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Style">
+              <PropertyRef Name="style_id" />
+            </Principal>
+            <Dependent Role="User_Style">
+              <PropertyRef Name="style_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ticket__user_id___6D0D32F4">
+          <End Role="Super_User" Type="Self.Super_User" Multiplicity="0..1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Super_User">
+              <PropertyRef Name="user_id_admin" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="user_id_admin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ticket__user_id__6E01572D">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__User_Time__time___70DDC3D8">
+          <End Role="time" Type="Self.time" Multiplicity="1" />
+          <End Role="User_Time" Type="Self.User_Time" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="time">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="User_Time">
+              <PropertyRef Name="time_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Valorar__apprais__73BA3083">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Valorar" Type="Self.Valorar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Valorar">
+              <PropertyRef Name="appraiser_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Valorar__valued___74AE54BC">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Valorar" Type="Self.Valorar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Valorar">
+              <PropertyRef Name="valued_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Follow">
+          <End Role="Musician" Type="Self.Musician" Multiplicity="*" />
+          <End Role="Restaurant" Type="Self.Restaurant" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="NaivyBeatsEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Chat" EntityType="Self.Chat" />
+          <EntitySet Name="City" EntityType="Self.City" />
+          <EntitySet Name="Comment_Restaurant_Publication" EntityType="Self.Comment_Restaurant_Publication" />
+          <EntitySet Name="Like_Restaurant_Publication" EntityType="Self.Like_Restaurant_Publication" />
+          <EntitySet Name="Message" EntityType="Self.Message" />
+          <EntitySet Name="Municipality" EntityType="Self.Municipality" />
+          <EntitySet Name="Musician" EntityType="Self.Musician" />
+          <EntitySet Name="Offer_dir" EntityType="Self.Offer_dir" />
+          <EntitySet Name="Offer_In" EntityType="Self.Offer_In" />
+          <EntitySet Name="Publication" EntityType="Self.Publication" />
+          <EntitySet Name="Restaurant" EntityType="Self.Restaurant" />
+          <EntitySet Name="Style" EntityType="Self.Style" />
+          <EntitySet Name="Super_User" EntityType="Self.Super_User" />
+          <EntitySet Name="Ticket" EntityType="Self.Ticket" />
+          <EntitySet Name="time" EntityType="Self.time" />
+          <EntitySet Name="User_Style" EntityType="Self.User_Style" />
+          <EntitySet Name="User_Time" EntityType="Self.User_Time" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
+          <EntitySet Name="Valorar" EntityType="Self.Valorar" />
+          <AssociationSet Name="FK__Chat__musician_i__5BE2A6F2" Association="Self.FK__Chat__musician_i__5BE2A6F2">
+            <End Role="Musician" EntitySet="Musician" />
+            <End Role="Chat" EntitySet="Chat" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Chat__restaurant__5CD6CB2B" Association="Self.FK__Chat__restaurant__5CD6CB2B">
+            <End Role="Restaurant" EntitySet="Restaurant" />
+            <End Role="Chat" EntitySet="Chat" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Message__chat_id__6383C8BA" Association="Self.FK__Message__chat_id__6383C8BA">
+            <End Role="Chat" EntitySet="Chat" />
+            <End Role="Message" EntitySet="Message" />
+          </AssociationSet>
+          <AssociationSet Name="fk_municipality_city" Association="Self.fk_municipality_city">
+            <End Role="City" EntitySet="City" />
+            <End Role="Municipality" EntitySet="Municipality" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Comment_R__publi__5DCAEF64" Association="Self.FK__Comment_R__publi__5DCAEF64">
+            <End Role="Publication" EntitySet="Publication" />
+            <End Role="Comment_Restaurant_Publication" EntitySet="Comment_Restaurant_Publication" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Comment_R__user___5EBF139D" Association="Self.FK__Comment_R__user___5EBF139D">
+            <End Role="Restaurant" EntitySet="Restaurant" />
+            <End Role="Comment_Restaurant_Publication" EntitySet="Comment_Restaurant_Publication" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Like_Rest__publi__619B8048" Association="Self.FK__Like_Rest__publi__619B8048">
+            <End Role="Publication" EntitySet="Publication" />
+            <End Role="Like_Restaurant_Publication" EntitySet="Like_Restaurant_Publication" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Like_Rest__resta__628FA481" Association="Self.FK__Like_Rest__resta__628FA481">
+            <End Role="Restaurant" EntitySet="Restaurant" />
+            <End Role="Like_Restaurant_Publication" EntitySet="Like_Restaurant_Publication" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Message__user_id__6477ECF3" Association="Self.FK__Message__user_id__6477ECF3">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Message" EntitySet="Message" />
+          </AssociationSet>
+          <AssociationSet Name="fk_users_municipality" Association="Self.fk_users_municipality">
+            <End Role="Municipality" EntitySet="Municipality" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Musician__user_i__66603565" Association="Self.FK__Musician__user_i__66603565">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Musician" EntitySet="Musician" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Offer_dir__music__6754599E" Association="Self.FK__Offer_dir__music__6754599E">
+            <End Role="Musician" EntitySet="Musician" />
+            <End Role="Offer_dir" EntitySet="Offer_dir" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Offer_In__music___693CA210" Association="Self.FK__Offer_In__music___693CA210">
+            <End Role="Musician" EntitySet="Musician" />
+            <End Role="Offer_In" EntitySet="Offer_In" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Publicati__user___6B24EA82" Association="Self.FK__Publicati__user___6B24EA82">
+            <End Role="Musician" EntitySet="Musician" />
+            <End Role="Publication" EntitySet="Publication" />
+          </AssociationSet>
+          <AssociationSet Name="FK__User_Time__user___71D1E811" Association="Self.FK__User_Time__user___71D1E811">
+            <End Role="Musician" EntitySet="Musician" />
+            <End Role="User_Time" EntitySet="User_Time" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Style_Musician" Association="Self.FK_User_Style_Musician">
+            <End Role="Musician" EntitySet="Musician" />
+            <End Role="User_Style" EntitySet="User_Style" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Offer_dir__resta__68487DD7" Association="Self.FK__Offer_dir__resta__68487DD7">
+            <End Role="Restaurant" EntitySet="Restaurant" />
+            <End Role="Offer_dir" EntitySet="Offer_dir" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Offer_In__restau__6A30C649" Association="Self.FK__Offer_In__restau__6A30C649">
+            <End Role="Restaurant" EntitySet="Restaurant" />
+            <End Role="Offer_In" EntitySet="Offer_In" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Restauran__user___6C190EBB" Association="Self.FK__Restauran__user___6C190EBB">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Restaurant" EntitySet="Restaurant" />
+          </AssociationSet>
+          <AssociationSet Name="FK__User_Styl__style__6EF57B66" Association="Self.FK__User_Styl__style__6EF57B66">
+            <End Role="Style" EntitySet="Style" />
+            <End Role="User_Style" EntitySet="User_Style" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ticket__user_id___6D0D32F4" Association="Self.FK__Ticket__user_id___6D0D32F4">
+            <End Role="Super_User" EntitySet="Super_User" />
+            <End Role="Ticket" EntitySet="Ticket" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ticket__user_id__6E01572D" Association="Self.FK__Ticket__user_id__6E01572D">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Ticket" EntitySet="Ticket" />
+          </AssociationSet>
+          <AssociationSet Name="FK__User_Time__time___70DDC3D8" Association="Self.FK__User_Time__time___70DDC3D8">
+            <End Role="time" EntitySet="time" />
+            <End Role="User_Time" EntitySet="User_Time" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Valorar__apprais__73BA3083" Association="Self.FK__Valorar__apprais__73BA3083">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Valorar" EntitySet="Valorar" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Valorar__valued___74AE54BC" Association="Self.FK__Valorar__valued___74AE54BC">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Valorar" EntitySet="Valorar" />
+          </AssociationSet>
+          <AssociationSet Name="Follow" Association="Self.Follow">
+            <End Role="Musician" EntitySet="Musician" />
+            <End Role="Restaurant" EntitySet="Restaurant" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="NaivyBeatsModelStoreContainer" CdmEntityContainer="NaivyBeatsEntities1">
+          <EntitySetMapping Name="Chat">
+            <EntityTypeMapping TypeName="NaivyBeatsModel.Chat">
+              <MappingFragment StoreEntitySet="Chat">
+                <ScalarProperty Name="chat_id" ColumnName="chat_id" />
+                <ScalarProperty Name="creation_date" ColumnName="creation_date" />
+                <ScalarProperty Name="restaurant_id" ColumnName="restaurant_id" />
+                <ScalarProperty Name="musician_id" ColumnName="musician_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="City">
+            <EntityTypeMapping TypeName="NaivyBeatsModel.City">
+              <MappingFragment StoreEntitySet="City">
+                <ScalarProperty Name="city_id" ColumnName="city_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Comment_Restaurant_Publication">
+            <EntityTypeMapping TypeName="NaivyBeatsModel.Comment_Restaurant_Publication">
+              <MappingFragment StoreEntitySet="Comment_Restaurant_Publication">
+                <ScalarProperty Name="comment_id" ColumnName="comment_id" />
+                <ScalarProperty Name="content" ColumnName="content" />
+                <ScalarProperty Name="publication_id" ColumnName="publication_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Like_Restaurant_Publication">
+            <EntityTypeMapping TypeName="NaivyBeatsModel.Like_Restaurant_Publication">
+              <MappingFragment StoreEntitySet="Like_Restaurant_Publication">
+                <ScalarProperty Name="publish_date" ColumnName="publish_date" />
+                <ScalarProperty Name="restaurant_id" ColumnName="restaurant_id" />
+                <ScalarProperty Name="publication_id" ColumnName="publication_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Message">
+            <EntityTypeMapping TypeName="NaivyBeatsModel.Message">
+              <MappingFragment StoreEntitySet="Message">
+                <ScalarProperty Name="message_id" ColumnName="message_id" />
+                <ScalarProperty Name="text" ColumnName="text" />
+                <ScalarProperty Name="publish_date" ColumnName="publish_date" />
+                <ScalarProperty Name="reading_date" ColumnName="reading_date" />
+                <ScalarProperty Name="chat_id" ColumnName="chat_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Municipality">
+            <EntityTypeMapping TypeName="NaivyBeatsModel.Municipality">
+              <MappingFragment StoreEntitySet="Municipality">
+                <ScalarProperty Name="municipality_id" ColumnName="municipality_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="city_id" ColumnName="city_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Musician">
+            <EntityTypeMapping TypeName="NaivyBeatsModel.Musician">
+              <MappingFragment StoreEntitySet="Musician">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Offer_dir">
+            <EntityTypeMapping TypeName="NaivyBeatsModel.Offer_dir">
+              <MappingFragment StoreEntitySet="Offer_dir">
+                <ScalarProperty Name="offer_id" ColumnName="offer_id" />
+                <ScalarProperty Name="publish_date" ColumnName="publish_date" />
+                <ScalarProperty Name="salary" ColumnName="salary" />
+                <ScalarProperty Name="event_date" ColumnName="event_date" />
+                <ScalarProperty Name="agreement" ColumnName="agreement" />
+                <ScalarProperty Name="done" ColumnName="done" />
+                <ScalarProperty Name="restaurant_id" ColumnName="restaurant_id" />
+                <ScalarProperty Name="musician_id" ColumnName="musician_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Offer_In">
+            <EntityTypeMapping TypeName="NaivyBeatsModel.Offer_In">
+              <MappingFragment StoreEntitySet="Offer_In">
+                <ScalarProperty Name="offer_in_id" ColumnName="offer_in_id" />
+                <ScalarProperty Name="publish_date" ColumnName="publish_date" />
+                <ScalarProperty Name="salary" ColumnName="salary" />
+                <ScalarProperty Name="event_date" ColumnName="event_date" />
+                <ScalarProperty Name="music_id_final" ColumnName="music_id_final" />
+                <ScalarProperty Name="restaurant_id" ColumnName="restaurant_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Publication">
+            <EntityTypeMapping TypeName="NaivyBeatsModel.Publication">
+              <MappingFragment StoreEntitySet="Publication">
+                <ScalarProperty Name="publication_id" ColumnName="publication_id" />
+                <ScalarProperty Name="publication_date" ColumnName="publication_date" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="multimedia_content" ColumnName="multimedia_content" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Restaurant">
+            <EntityTypeMapping TypeName="NaivyBeatsModel.Restaurant">
+              <MappingFragment StoreEntitySet="Restaurant">
+                <ScalarProperty Name="opening_time" ColumnName="opening_time" />
+                <ScalarProperty Name="closing_time" ColumnName="closing_time" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Style">
+            <EntityTypeMapping TypeName="NaivyBeatsModel.Style">
+              <MappingFragment StoreEntitySet="Style">
+                <ScalarProperty Name="style_id" ColumnName="style_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Super_User">
+            <EntityTypeMapping TypeName="NaivyBeatsModel.Super_User">
+              <MappingFragment StoreEntitySet="Super_User">
+                <ScalarProperty Name="user_id_admin" ColumnName="user_id_admin" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="role" ColumnName="role" />
+                <ScalarProperty Name="delete_at" ColumnName="delete_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ticket">
+            <EntityTypeMapping TypeName="NaivyBeatsModel.Ticket">
+              <MappingFragment StoreEntitySet="Ticket">
+                <ScalarProperty Name="ticket_id" ColumnName="ticket_id" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="creation_date" ColumnName="creation_date" />
+                <ScalarProperty Name="closing_date" ColumnName="closing_date" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="user_id_admin" ColumnName="user_id_admin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="time">
+            <EntityTypeMapping TypeName="NaivyBeatsModel.time">
+              <MappingFragment StoreEntitySet="time">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User_Style">
+            <EntityTypeMapping TypeName="NaivyBeatsModel.User_Style">
+              <MappingFragment StoreEntitySet="User_Style">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="style_id" ColumnName="style_id" />
+                <ScalarProperty Name="creation_date" ColumnName="creation_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User_Time">
+            <EntityTypeMapping TypeName="NaivyBeatsModel.User_Time">
+              <MappingFragment StoreEntitySet="User_Time">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="time_id" ColumnName="time_id" />
+                <ScalarProperty Name="creation_date" ColumnName="creation_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="NaivyBeatsModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="photo" ColumnName="photo" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+                <ScalarProperty Name="creation_date" ColumnName="creation_date" />
+                <ScalarProperty Name="edition_date" ColumnName="edition_date" />
+                <ScalarProperty Name="deleted_at" ColumnName="deleted_at" />
+                <ScalarProperty Name="municipality_id" ColumnName="municipality_id" />
+                <ScalarProperty Name="latitud" ColumnName="latitud" />
+                <ScalarProperty Name="longitud" ColumnName="longitud" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Valorar">
+            <EntityTypeMapping TypeName="NaivyBeatsModel.Valorar">
+              <MappingFragment StoreEntitySet="Valorar">
+                <ScalarProperty Name="puntuation" ColumnName="puntuation" />
+                <ScalarProperty Name="comment" ColumnName="comment" />
+                <ScalarProperty Name="appraiser_id" ColumnName="appraiser_id" />
+                <ScalarProperty Name="valued_id" ColumnName="valued_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="Follow" TypeName="NaivyBeatsModel.Follow" StoreEntitySet="Follow">
+            <EndProperty Name="Musician">
+              <ScalarProperty Name="user_id" ColumnName="musician_id" />
+            </EndProperty>
+            <EndProperty Name="Restaurant">
+              <ScalarProperty Name="user_id" ColumnName="restaurant_id" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

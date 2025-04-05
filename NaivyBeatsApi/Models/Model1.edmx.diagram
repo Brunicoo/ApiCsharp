@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="bde9399e9d2e41cbbe35421105d6927d" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="NaivyBeatsModel.Chat" Width="1.5" PointX="9.75" PointY="20.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="NaivyBeatsModel.City" Width="1.5" PointX="0.75" PointY="18.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="NaivyBeatsModel.Comment_Restaurant_Publication" Width="1.5" PointX="12" PointY="30.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NaivyBeatsModel.Like_Restaurant_Publication" Width="1.5" PointX="12" PointY="27.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="NaivyBeatsModel.Message" Width="1.5" PointX="7.5" PointY="16.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="NaivyBeatsModel.Municipality" Width="1.5" PointX="3" PointY="18.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="NaivyBeatsModel.Musician" Width="1.5" PointX="7.5" PointY="20" IsExpanded="true" />
+        <EntityTypeShape EntityType="NaivyBeatsModel.Offer_dir" Width="1.5" PointX="12.75" PointY="19.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NaivyBeatsModel.Offer_In" Width="1.5" PointX="9.75" PointY="16" IsExpanded="true" />
+        <EntityTypeShape EntityType="NaivyBeatsModel.Publication" Width="1.5" PointX="9.75" PointY="30.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="NaivyBeatsModel.Restaurant" Width="1.5" PointX="12.75" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="NaivyBeatsModel.Style" Width="1.5" PointX="7.5" PointY="23.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="NaivyBeatsModel.Super_User" Width="1.5" PointX="5.25" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="NaivyBeatsModel.Ticket" Width="1.5" PointX="7.5" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="NaivyBeatsModel.time" Width="1.5" PointX="10.5" PointY="33.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="NaivyBeatsModel.User_Style" Width="1.5" PointX="9.75" PointY="23.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NaivyBeatsModel.User_Time" Width="1.5" PointX="12.75" PointY="24.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NaivyBeatsModel.Users" Width="1.5" PointX="5.25" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="NaivyBeatsModel.Valorar" Width="1.5" PointX="7.5" PointY="27" IsExpanded="true" />
+        <AssociationConnector Association="NaivyBeatsModel.FK__Chat__musician_i__5BE2A6F2" ManuallyRouted="false" />
+        <AssociationConnector Association="NaivyBeatsModel.FK__Chat__restaurant__5CD6CB2B" ManuallyRouted="false" />
+        <AssociationConnector Association="NaivyBeatsModel.FK__Message__chat_id__6383C8BA" ManuallyRouted="false" />
+        <AssociationConnector Association="NaivyBeatsModel.fk_municipality_city" ManuallyRouted="false" />
+        <AssociationConnector Association="NaivyBeatsModel.FK__Comment_R__publi__5DCAEF64" ManuallyRouted="false" />
+        <AssociationConnector Association="NaivyBeatsModel.FK__Comment_R__user___5EBF139D" ManuallyRouted="false" />
+        <AssociationConnector Association="NaivyBeatsModel.FK__Like_Rest__publi__619B8048" ManuallyRouted="false" />
+        <AssociationConnector Association="NaivyBeatsModel.FK__Like_Rest__resta__628FA481" ManuallyRouted="false" />
+        <AssociationConnector Association="NaivyBeatsModel.FK__Message__user_id__6477ECF3" ManuallyRouted="false" />
+        <AssociationConnector Association="NaivyBeatsModel.fk_users_municipality" ManuallyRouted="false" />
+        <AssociationConnector Association="NaivyBeatsModel.FK__Musician__user_i__66603565" ManuallyRouted="false" />
+        <AssociationConnector Association="NaivyBeatsModel.FK__Offer_dir__music__6754599E" ManuallyRouted="false" />
+        <AssociationConnector Association="NaivyBeatsModel.FK__Offer_In__music___693CA210" ManuallyRouted="false" />
+        <AssociationConnector Association="NaivyBeatsModel.FK__Publicati__user___6B24EA82" ManuallyRouted="false" />
+        <AssociationConnector Association="NaivyBeatsModel.FK__User_Time__user___71D1E811" ManuallyRouted="false" />
+        <AssociationConnector Association="NaivyBeatsModel.FK_User_Style_Musician" ManuallyRouted="false" />
+        <AssociationConnector Association="NaivyBeatsModel.FK__Offer_dir__resta__68487DD7" ManuallyRouted="false" />
+        <AssociationConnector Association="NaivyBeatsModel.FK__Offer_In__restau__6A30C649" ManuallyRouted="false" />
+        <AssociationConnector Association="NaivyBeatsModel.FK__Restauran__user___6C190EBB" ManuallyRouted="false" />
+        <AssociationConnector Association="NaivyBeatsModel.FK__User_Styl__style__6EF57B66" ManuallyRouted="false" />
+        <AssociationConnector Association="NaivyBeatsModel.FK__Ticket__user_id___6D0D32F4" ManuallyRouted="false" />
+        <AssociationConnector Association="NaivyBeatsModel.FK__Ticket__user_id__6E01572D" ManuallyRouted="false" />
+        <AssociationConnector Association="NaivyBeatsModel.FK__User_Time__time___70DDC3D8" ManuallyRouted="false" />
+        <AssociationConnector Association="NaivyBeatsModel.FK__Valorar__apprais__73BA3083" ManuallyRouted="false" />
+        <AssociationConnector Association="NaivyBeatsModel.FK__Valorar__valued___74AE54BC" ManuallyRouted="false" />
+        <AssociationConnector Association="NaivyBeatsModel.Follow" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
