@@ -14,24 +14,11 @@ namespace NaivyBeatsApi.Models
     
     public partial class Publication
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Publication()
-        {
-            this.Comment_Restaurant_Publication = new HashSet<Comment_Restaurant_Publication>();
-            this.Like_Restaurant_Publication = new HashSet<Like_Restaurant_Publication>();
-        }
-    
         public int publication_id { get; set; }
         public Nullable<System.DateTime> publication_date { get; set; }
         public string description { get; set; }
         public string multimedia_content { get; set; }
         public Nullable<int> user_id { get; set; }
         public string titulo { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Comment_Restaurant_Publication> Comment_Restaurant_Publication { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Like_Restaurant_Publication> Like_Restaurant_Publication { get; set; }
-        public virtual Musician Musician { get; set; }
     }
 }

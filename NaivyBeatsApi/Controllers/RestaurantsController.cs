@@ -83,28 +83,28 @@ namespace NaivyBeatsApi.Controllers
 
         // POST: api/Restaurants
         [ResponseType(typeof(bool))]
-        public IHttpActionResult PostRestaurant(Restaurant restaurant)
+        public IHttpActionResult PostRestaurant(Restaurant res)
         {
             Users usu = new Users();
 
             usu.user_id = 0;
-            usu.name = restaurant.name;
-            usu.photo = restaurant.photo;
-            usu.email = restaurant.email;
-            usu.password = restaurant.password;
-            usu.phone_number = restaurant.phone_number;
+            usu.name = res.name;
+            usu.photo = res.photo;
+            usu.email = res.email;
+            usu.password = res.password;
+            usu.phone_number = res.phone_number;
             usu.creation_date = DateTime.Now.Date;
             usu.edition_date = DateTime.Now.Date;
-            usu.municipality_id = restaurant.municipality_id;
-            usu.latitud = restaurant.latitud;
-            usu.longitud = restaurant.longitud;
+            usu.municipality_id = res.municipality_id;
+            usu.latitud = res.latitud;
+            usu.longitud = res.longitud;
             db.Users.Add(usu);
             db.SaveChanges();
 
             Restaurant r = new Restaurant();
             r.user_id = usu.user_id;
-            r.closing_time = restaurant.closing_time;
-            r.opening_time = restaurant.opening_time;
+            r.closing_time = res.closing_time;
+            r.opening_time = res.opening_time;
 
             db.Restaurant.Add(r);
             db.SaveChanges();

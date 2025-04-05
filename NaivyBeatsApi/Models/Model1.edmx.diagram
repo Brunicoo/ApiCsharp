@@ -4,27 +4,27 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="d189d6e0537e4fa8b81f0aae41fb339b" Name="Diagram1" ZoomLevel="83">
+      <Diagram DiagramId="99fd74fe58ae457e9525737a660336db" Name="Diagram1" ZoomLevel="72">
         <EntityTypeShape EntityType="NaivyBeatsModel.Chat" Width="1.5" PointX="9.75" PointY="20.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="NaivyBeatsModel.City" Width="1.5" PointX="0.75" PointY="19" IsExpanded="true" />
-        <EntityTypeShape EntityType="NaivyBeatsModel.Comment_Restaurant_Publication" Width="1.5" PointX="12" PointY="30.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="NaivyBeatsModel.Like_Restaurant_Publication" Width="1.5" PointX="12" PointY="28" IsExpanded="true" />
-        <EntityTypeShape EntityType="NaivyBeatsModel.Message" Width="1.5" PointX="7.5" PointY="16.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="NaivyBeatsModel.Municipality" Width="1.5" PointX="3" PointY="18.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="NaivyBeatsModel.Musician" Width="1.5" PointX="7.5" PointY="20.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="NaivyBeatsModel.Offer_dir" Width="1.5" PointX="12.75" PointY="20.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="NaivyBeatsModel.City" Width="1.5" PointX="0.75" PointY="19.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="NaivyBeatsModel.Comment_Restaurant_Publication" Width="1.5" PointX="12" PointY="31.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="NaivyBeatsModel.Like_Restaurant_Publication" Width="1.5" PointX="12" PointY="28.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="NaivyBeatsModel.Message" Width="1.5" PointX="7.5" PointY="16.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="NaivyBeatsModel.Municipality" Width="1.5" PointX="3" PointY="18.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NaivyBeatsModel.Musician" Width="1.5" PointX="7.5" PointY="20.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NaivyBeatsModel.Offer_dir" Width="1.5" PointX="12.75" PointY="20.25" IsExpanded="true" />
         <EntityTypeShape EntityType="NaivyBeatsModel.Offer_In" Width="1.5" PointX="9.75" PointY="16.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="NaivyBeatsModel.Offer_in_Styles" Width="1.5" PointX="15" PointY="16.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="NaivyBeatsModel.Publication" Width="1.5" PointX="9.75" PointY="30.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="NaivyBeatsModel.Restaurant" Width="1.5" PointX="12.75" PointY="15.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="NaivyBeatsModel.Style" Width="1.5" PointX="12.75" PointY="12.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="NaivyBeatsModel.Super_User" Width="1.5" PointX="5.25" PointY="12.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="NaivyBeatsModel.Ticket" Width="1.5" PointX="7.5" PointY="12.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="NaivyBeatsModel.time" Width="1.5" PointX="10.5" PointY="34.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="NaivyBeatsModel.User_Style" Width="1.5" PointX="9.75" PointY="23.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="NaivyBeatsModel.User_Time" Width="1.5" PointX="12.75" PointY="24.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="NaivyBeatsModel.Users" Width="1.5" PointX="5.25" PointY="17.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="NaivyBeatsModel.Valorar" Width="1.5" PointX="7.5" PointY="27.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="NaivyBeatsModel.Offer_in_Styles" Width="1.5" PointX="15" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NaivyBeatsModel.Publication" Width="1.5" PointX="9.75" PointY="30.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NaivyBeatsModel.Restaurant" Width="1.5" PointX="12.75" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NaivyBeatsModel.Style" Width="1.5" PointX="12.75" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NaivyBeatsModel.Super_User" Width="1.5" PointX="5.25" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NaivyBeatsModel.Ticket" Width="1.5" PointX="7.5" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NaivyBeatsModel.time" Width="1.5" PointX="10.5" PointY="35" IsExpanded="true" />
+        <EntityTypeShape EntityType="NaivyBeatsModel.User_Style" Width="1.5" PointX="9.75" PointY="23.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NaivyBeatsModel.User_Time" Width="1.5" PointX="12.75" PointY="24.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NaivyBeatsModel.Users" Width="1.5" PointX="5.25" PointY="17.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="NaivyBeatsModel.Valorar" Width="1.5" PointX="7.5" PointY="27.75" IsExpanded="true" />
         <AssociationConnector Association="NaivyBeatsModel.FK__Chat__musician_i__72C60C4A" ManuallyRouted="false" />
         <AssociationConnector Association="NaivyBeatsModel.FK__Chat__restaurant__73BA3083" ManuallyRouted="false" />
         <AssociationConnector Association="NaivyBeatsModel.FK__Message__chat_id__7A672E12" ManuallyRouted="false" />

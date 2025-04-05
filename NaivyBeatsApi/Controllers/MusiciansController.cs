@@ -30,8 +30,9 @@ namespace NaivyBeatsApi.Controllers
         public IHttpActionResult GetMusician(int id)
         {
             Users user = db.Users.Find(id);
+           
 
-            Musician m = db.Musician.Find(user.user_id);
+           Musician m = db.Musician.Find(user.user_id);
             m.name = user.name;
             m.photo = user.photo;
             m.email = user.email;

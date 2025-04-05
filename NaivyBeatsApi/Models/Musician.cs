@@ -12,23 +12,13 @@ namespace NaivyBeatsApi.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Musician
+    public partial class Musician: Users
     {
-
+   
+    
         public int user_id { get; set; }
-        public string name { get; set; }
-        public string photo { get; set; }
-        public string email { get; set; }
-        public string password { get; set; }
-        public int phone_number { get; set; }
-        public Nullable<System.DateTime> creation_date { get; set; }
-        public Nullable<System.DateTime> edition_date { get; set; }
-        public Nullable<System.DateTime> deleted_at { get; set; }
-        public Nullable<int> municipality_id { get; set; }
-        public Nullable<decimal> latitud { get; set; }
-        public Nullable<decimal> longitud { get; set; }
-        public string descripcion { get; set; }
-        public List<Style> Styles { get; set; }
-        public List<time> time { get; set; }
+        public List<Style> Styles { get; set; } = new List<Style>();
+        public List<time> time { get; set; } = new List<time>();
+
     }
 }

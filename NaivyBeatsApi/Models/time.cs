@@ -14,16 +14,7 @@ namespace NaivyBeatsApi.Models
     
     public partial class time
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public time()
-        {
-            this.User_Time = new HashSet<User_Time>();
-        }
-    
         public int id { get; set; }
         public string name { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<User_Time> User_Time { get; set; }
     }
 }

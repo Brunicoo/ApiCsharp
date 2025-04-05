@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="NaivyBeatsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="NaivyBeatsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Chat">
           <Key>
             <PropertyRef Name="chat_id" />
@@ -90,11 +90,12 @@
             <PropertyRef Name="offer_in_id" />
           </Key>
           <Property Name="offer_in_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="publish_date" Type="date" />
+          <Property Name="publish_date" Type="varchar" MaxLength="50" />
           <Property Name="salary" Type="int" />
-          <Property Name="event_date" Type="datetime" />
+          <Property Name="event_date" Type="varchar" MaxLength="50" />
           <Property Name="music_id_final" Type="int" />
           <Property Name="restaurant_id" Type="int" />
+          <Property Name="description" Type="varchar" MaxLength="2000" />
         </EntityType>
         <EntityType Name="Offer_in_Styles">
           <Key>
@@ -698,7 +699,8 @@
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="NaivyBeatsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -726,8 +728,6 @@
           <Property Name="content" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
           <Property Name="publication_id" Type="Int32" />
           <Property Name="user_id" Type="Int32" />
-          <NavigationProperty Name="Publication" Relationship="Self.FK__Comment_R__publi__74AE54BC" FromRole="Comment_Restaurant_Publication" ToRole="Publication" />
-          <NavigationProperty Name="Restaurant" Relationship="Self.FK__Comment_R__user___75A278F5" FromRole="Comment_Restaurant_Publication" ToRole="Restaurant" />
         </EntityType>
         <EntityType Name="Like_Restaurant_Publication">
           <Key>
@@ -748,6 +748,8 @@
           <Property Name="reading_date" Type="DateTime" Precision="0" />
           <Property Name="chat_id" Type="Int32" />
           <Property Name="user_id" Type="Int32" />
+          <NavigationProperty Name="Chat" Relationship="Self.FK__Message__chat_id__7A672E12" FromRole="Message" ToRole="Chat" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__Message__user_id__7B5B524B" FromRole="Message" ToRole="Users" />
         </EntityType>
         <EntityType Name="Municipality">
           <Key>
@@ -781,11 +783,12 @@
             <PropertyRef Name="offer_in_id" />
           </Key>
           <Property Name="offer_in_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="publish_date" Type="DateTime" Precision="0" />
+          <Property Name="publish_date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="salary" Type="Int32" />
-          <Property Name="event_date" Type="DateTime" Precision="3" />
+          <Property Name="event_date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="music_id_final" Type="Int32" />
           <Property Name="restaurant_id" Type="Int32" />
+          <Property Name="description" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Offer_in_Styles">
           <Key>
@@ -806,9 +809,6 @@
           <Property Name="multimedia_content" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="user_id" Type="Int32" />
           <Property Name="titulo" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Comment_Restaurant_Publication" Relationship="Self.FK__Comment_R__publi__74AE54BC" FromRole="Publication" ToRole="Comment_Restaurant_Publication" />
-          <NavigationProperty Name="Like_Restaurant_Publication" Relationship="Self.FK__Like_Rest__publi__787EE5A0" FromRole="Publication" ToRole="Like_Restaurant_Publication" />
-          <NavigationProperty Name="Musician" Relationship="Self.FK__Publicati__user___02084FDA" FromRole="Publication" ToRole="Musician" />
         </EntityType>
         <EntityType Name="Restaurant">
           <Key>
@@ -856,7 +856,6 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="User_Time" Relationship="Self.FK__User_Time__time___07C12930" FromRole="time" ToRole="User_Time" />
         </EntityType>
         <EntityType Name="User_Style">
           <Key>
@@ -1462,6 +1461,7 @@
                 <ScalarProperty Name="event_date" ColumnName="event_date" />
                 <ScalarProperty Name="music_id_final" ColumnName="music_id_final" />
                 <ScalarProperty Name="restaurant_id" ColumnName="restaurant_id" />
+                <ScalarProperty Name="description" ColumnName="description" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -15,10 +15,11 @@ namespace NaivyBeatsApi.Models
     public partial class Offer_In
     {
         public int offer_in_id { get; set; }
-        public Nullable<System.DateTime> publish_date { get; set; }
+        public string publish_date { get; set; }
         public Nullable<int> salary { get; set; }
-        public Nullable<System.DateTime> event_date { get; set; }
+        public string event_date { get; set; }
         public Nullable<int> music_id_final { get; set; }
         public Nullable<int> restaurant_id { get; set; }
+        public string description { get; set; }
     }
 }

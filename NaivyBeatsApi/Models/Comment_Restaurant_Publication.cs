@@ -18,8 +18,5 @@ namespace NaivyBeatsApi.Models
         public string content { get; set; }
         public Nullable<int> publication_id { get; set; }
         public Nullable<int> user_id { get; set; }
-    
-        public virtual Publication Publication { get; set; }
-        public virtual Restaurant Restaurant { get; set; }
     }
 }
