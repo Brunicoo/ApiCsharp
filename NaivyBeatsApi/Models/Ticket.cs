@@ -21,5 +21,7 @@ namespace NaivyBeatsApi.Models
         public Nullable<System.DateTime> closing_date { get; set; }
         public Nullable<int> user_id { get; set; }
         public Nullable<int> user_id_admin { get; set; }
+        public string subject { get; set; }
+        public bool status { get; set; }
     }
 }

@@ -12,14 +12,10 @@ namespace NaivyBeatsApi.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Comment_Restaurant_Publication
+    public partial class Offer_in_Styles
     {
-        public int comment_id { get; set; }
-        public string content { get; set; }
-        public Nullable<int> publication_id { get; set; }
-        public Nullable<int> user_id { get; set; }
-    
-        public virtual Publication Publication { get; set; }
-        public virtual Restaurant Restaurant { get; set; }
+        public int style_id { get; set; }
+        public int id_offer_in { get; set; }
+        public string creation_date { get; set; }
     }
 }

@@ -14,7 +14,7 @@ namespace NaivyBeatsApi.Controllers
 {
     public class MunicipalitiesController : ApiController
     {
-        private NaivyBeatsEntities1 db = new NaivyBeatsEntities1();
+        private NaivyBeatsEntities db = new NaivyBeatsEntities();
 
         // GET: api/Municipalities
         public IQueryable<Municipality> GetMunicipality()

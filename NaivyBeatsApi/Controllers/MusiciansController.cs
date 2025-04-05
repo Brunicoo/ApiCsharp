@@ -17,7 +17,7 @@ namespace NaivyBeatsApi.Controllers
     
     public class MusiciansController : ApiController
     {
-        private NaivyBeatsEntities1 db = new NaivyBeatsEntities1();
+        private NaivyBeatsEntities db = new NaivyBeatsEntities();
 
         // GET: api/Musicians
         public IEnumerable<Musician> GetMusicians()

@@ -13,10 +13,10 @@ namespace NaivyBeatsApi.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class NaivyBeatsEntities1 : DbContext
+    public partial class NaivyBeatsEntities : DbContext
     {
-        public NaivyBeatsEntities1()
-            : base("name=NaivyBeatsEntities1")
+        public NaivyBeatsEntities()
+            : base("name=NaivyBeatsEntities")
         {
         }
     
@@ -34,6 +34,7 @@ namespace NaivyBeatsApi.Models
         public virtual DbSet<Musician> Musician { get; set; }
         public virtual DbSet<Offer_dir> Offer_dir { get; set; }
         public virtual DbSet<Offer_In> Offer_In { get; set; }
+        public virtual DbSet<Offer_in_Styles> Offer_in_Styles { get; set; }
         public virtual DbSet<Publication> Publication { get; set; }
         public virtual DbSet<Restaurant> Restaurant { get; set; }
         public virtual DbSet<Style> Style { get; set; }

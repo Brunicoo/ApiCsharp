@@ -14,7 +14,7 @@ namespace NaivyBeatsApi.Controllers
 {
     public class StylesController : ApiController
     {
-        private NaivyBeatsEntities1 db = new NaivyBeatsEntities1();
+        private NaivyBeatsEntities db = new NaivyBeatsEntities();
 
         // GET: api/Styles
         public IQueryable<Style> GetStyle()

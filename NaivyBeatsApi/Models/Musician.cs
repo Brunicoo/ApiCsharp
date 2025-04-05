@@ -14,6 +14,7 @@ namespace NaivyBeatsApi.Models
     
     public partial class Musician
     {
+
         public int user_id { get; set; }
         public string name { get; set; }
         public string photo { get; set; }
@@ -26,10 +27,8 @@ namespace NaivyBeatsApi.Models
         public Nullable<int> municipality_id { get; set; }
         public Nullable<decimal> latitud { get; set; }
         public Nullable<decimal> longitud { get; set; }
-        public List<Style> Styles { get; set; } = new List<Style>();
-        public List<time> time { get; set; } = new List<time>();
-
-
-
+        public string descripcion { get; set; }
+        public List<Style> Styles { get; set; }
+        public List<time> time { get; set; }
     }
 }

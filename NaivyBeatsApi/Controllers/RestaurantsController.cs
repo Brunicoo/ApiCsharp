@@ -15,7 +15,7 @@ namespace NaivyBeatsApi.Controllers
 {
     public class RestaurantsController : ApiController
     {
-        private NaivyBeatsEntities1 db = new NaivyBeatsEntities1();
+        private NaivyBeatsEntities db = new NaivyBeatsEntities();
 
         // GET: api/Restaurants
         public IQueryable<Restaurant> GetRestaurant()

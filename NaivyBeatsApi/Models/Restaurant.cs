@@ -28,5 +28,7 @@ namespace NaivyBeatsApi.Models
         public Nullable<int> municipality_id { get; set; }
         public Nullable<decimal> latitud { get; set; }
         public Nullable<decimal> longitud { get; set; }
+        public string descripcion { get; set; }
+
     }
 }
