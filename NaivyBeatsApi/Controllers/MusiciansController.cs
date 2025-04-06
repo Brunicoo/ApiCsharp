@@ -94,7 +94,6 @@ namespace NaivyBeatsApi.Controllers
             string email = HttpContext.Current.Request.Form["email"];
             string password = HttpContext.Current.Request.Form["password"];
             string phone_number = HttpContext.Current.Request.Form["phone_number"];
-            string creation_date = HttpContext.Current.Request.Form["creation_date"];
             string edition_date = HttpContext.Current.Request.Form["edition_date"];
             int municipality_id = int.Parse(HttpContext.Current.Request.Form["province_id"]);
             decimal latitud = decimal.Parse(HttpContext.Current.Request.Form["latitud"]);
