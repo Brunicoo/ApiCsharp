@@ -19,135 +19,135 @@ namespace NaivyBeatsApi.Controllers
     {
         private NaivyBeatsEntities db = new NaivyBeatsEntities();
 
-        // POST: api/Publication
-        [ResponseType(typeof(bool))]
-        [HttpPost]
-        public IHttpActionResult postPublication(PublicationDto publicationDto)
-        {
-            // 1. Verificar si el DTO es nulo
-            if (publicationDto == null)
-            {
-                return BadRequest("Los datos del formulario son incorrectos o están incompletos.");
-            }
-
-            // 2. Validar los campos del DTO
-            if (string.IsNullOrEmpty(publicationDto.titulo))
-            {
-                return BadRequest("El campo 'titulo' es obligatorio.");
-            }
-
-            if (string.IsNullOrEmpty(publicationDto.description))
-            {
-                return BadRequest("El campo 'description' es obligatorio.");
-            }
-
-            if (publicationDto.user_id <= 0)
-            {
-                return BadRequest("El campo 'user_id' es obligatorio y debe ser mayor que 0.");
-            }
-
-            // 3. Verificar si se proporcionó un archivo
-            if (publicationDto.multimedia_content == null || publicationDto.multimedia_content.ContentLength == 0)
-            {
-                return BadRequest("No se ha proporcionado ningún archivo.");
-            }
-
-            try
-            {
-                // Crear una nueva publicación
-                Publication p = new Publication
-                {
-                    user_id = publicationDto.user_id,
-                    titulo = publicationDto.titulo,
-                    description = publicationDto.description,
-                    publication_date = DateTime.Now.Date.ToString("yyyy-MM-dd")
-                };
-
-                // Guardar el archivo y obtener la ruta
-                string savedFilePath = SaveFile(publicationDto.multimedia_content, publicationDto.user_id);
-                if (string.IsNullOrEmpty(savedFilePath))
-                {
-                    return BadRequest("Error al guardar el archivo.");
-                }
-
-                p.multimedia_content = savedFilePath;
-
-                // Guardar la publicación en la base de datos
-                db.Publication.Add(p);
-                db.SaveChanges();
-
-                return Ok(true);
-            }
-            catch (Exception ex)
-            {
-                // Capturar cualquier error inesperado
-                return InternalServerError(ex);
-            }
-        }
-
 
         //[ResponseType(typeof(bool))]
-        //public IHttpActionResult postPublication()
+        //[HttpPost]
+        //public IHttpActionResult postPublication(PublicationDto publicationDto)
         //{
-        //    // Acceder al archivo
-        //    var file = HttpContext.Current.Request.Files["multimedia_content"];
-        //    if (file == null || file.ContentLength == 0)
+        //    if (publicationDto == null)
+        //    {
+        //        return BadRequest("Los datos del formulario son incorrectos o están incompletos.");
+        //    }
+
+        //    if (string.IsNullOrEmpty(publicationDto.titulo))
+        //    {
+        //        return BadRequest("El campo 'titulo' es obligatorio.");
+        //    }
+
+        //    if (string.IsNullOrEmpty(publicationDto.description))
+        //    {
+        //        return BadRequest("El campo 'description' es obligatorio.");
+        //    }
+
+        //    if (publicationDto.user_id <= 0)
+        //    {
+        //        return BadRequest("El campo 'user_id' es obligatorio y debe ser mayor que 0.");
+        //    }
+
+        //    if (publicationDto.multimedia_content == null || publicationDto.multimedia_content.ContentLength == 0)
         //    {
         //        return BadRequest("No se ha proporcionado ningún archivo.");
         //    }
 
-        //    // Acceder a los datos del formulario
-        //    int userId = Convert.ToInt32(HttpContext.Current.Request.Form["user_id"]);
-        //    string title = HttpContext.Current.Request.Form["titulo"];
-        //    string description = HttpContext.Current.Request.Form["description"];
-
-        //    // Guardar el archivo
-        //    string savedFilePath = SaveFile(file, userId);
-
-        //    // Crear la publicación
-        //    Publication p = new Publication
+        //    try
         //    {
-        //        user_id = userId,
-        //        titulo = title,
-        //        description = description,
-        //        publication_date = DateTime.Now.Date.ToString("yyyy-MM-dd"),
-        //        multimedia_content = savedFilePath
-        //    };
+        //        // Crear una nueva publicación
+        //        Publication p = new Publication
+        //        {
+        //            user_id = publicationDto.user_id,
+        //            titulo = publicationDto.titulo,
+        //            description = publicationDto.description,
+        //            publication_date = DateTime.Now.Date.ToString("yyyy-MM-dd")
+        //        };
 
-        //    db.Publication.Add(p);
-        //    db.SaveChanges();
+        //        string savedFilePath = SaveFile(publicationDto.multimedia_content, publicationDto.user_id);
+        //        if (string.IsNullOrEmpty(savedFilePath))
+        //        {
+        //            return BadRequest("Error al guardar el archivo.");
+        //        }
 
-        //    return Ok(true);
+        //        p.multimedia_content = savedFilePath;
+
+        //        // Guardar la publicación en la base de datos
+        //        db.Publication.Add(p);
+        //        db.SaveChanges();
+
+        //        return Ok(true);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // Capturar cualquier error inesperado
+        //        return InternalServerError(ex);
+        //    }
         //}
+
+
+        // POST: api/Publication
+        [ResponseType(typeof(bool))]
+        public IHttpActionResult postPublication()
+        {
+            // Acceder al archivo
+            var file = HttpContext.Current.Request.Files["multimedia_content"];
+            if (file == null || file.ContentLength == 0)
+            {
+                return BadRequest("No se ha proporcionado ningún archivo.");
+            }
+
+            // Acceder a los datos del formulario
+            int userId = Convert.ToInt32(HttpContext.Current.Request.Form["user_id"]);
+            string title = HttpContext.Current.Request.Form["titulo"];
+            string description = HttpContext.Current.Request.Form["description"];
+
+            // Guardar el archivo
+            string savedFilePath = SaveFile(file, userId);
+
+            // Crear la publicación
+            Publication p = new Publication
+            {
+                user_id = userId,
+                titulo = title,
+                description = description,
+                publication_date = DateTime.Now.Date.ToString("yyyy-MM-dd"),
+                multimedia_content = savedFilePath
+            };
+
+            db.Publication.Add(p);
+            db.SaveChanges();
+
+            return Ok(true);
+        }
 
         private string SaveFile(HttpPostedFile file, int userId)
         {
             try
             {
- 
-                string uploadsFolder = @"C:\Users\bruno\Desktop\NaivyBeatsApi\NaivyBeatsApi\NaivyBeatsApi\Data\publications\";
+                string fullPath = @"C:\Users\bruno\Desktop\NaivyBeatsApi\NaivyBeatsApi\NaivyBeatsApi\Data\publications\";
 
-                // Crear la carpeta si no existe
-                if (!Directory.Exists(uploadsFolder))
+                if (!Directory.Exists(fullPath))
                 {
-                    Directory.CreateDirectory(uploadsFolder);
+                    Directory.CreateDirectory(fullPath);
                 }
 
-                // Generar un nombre único para el archivo
-                string fileName = $"post.{userId}{Path.GetExtension(file.FileName)}";
+                var allowedExtensions = new[] { ".jpg", ".jpeg", ".png", ".gif" };
+                string fileExtension = Path.GetExtension(file.FileName).ToLower();
 
-                // Ruta completa del archivo
-                string filePath = Path.Combine(uploadsFolder, fileName);
+                if (!allowedExtensions.Contains(fileExtension))
+                {
+                    throw new Exception($"Tipo de archivo no permitido. Extensiones válidas: {string.Join(", ", allowedExtensions)}");
+                }
 
-                // Guardar el archivo en el disco
+
+                string fileName = $"publication.{userId}{fileExtension}";
+
+ 
+                string filePath = Path.Combine(fullPath, fileName);
                 file.SaveAs(filePath);
 
-                // Devolver la ruta absoluta del archivo
                 return filePath;
             }
             catch (Exception ex)
             {
-                throw new Exception($"Error al guardar el archivo: {ex.Message}");
+                throw new Exception($"Error al guardar el archivo: {ex.Message}", ex);
             }
         }
     }
