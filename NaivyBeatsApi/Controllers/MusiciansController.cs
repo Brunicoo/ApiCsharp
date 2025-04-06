@@ -221,7 +221,7 @@ namespace NaivyBeatsApi.Controllers
                 }
 
 
-                string fileName = $"publication.{userId}{fileExtension}";
+                string fileName = $"avatar.{userId}{fileExtension}";
 
 
                 string filePath = Path.Combine(fullPath, fileName);

@@ -105,6 +105,21 @@ namespace NaivyBeatsApi.Controllers
             string opening_time = HttpContext.Current.Request.Form["opening_time"];
             string closing_time = HttpContext.Current.Request.Form["closing_time"];
 
+            if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
+            {
+                return BadRequest("Todos los campos son obligatorios.");
+            }
+
+            if (municipality_id <= 0)
+            {
+                return BadRequest("El ID de municipio debe ser mayor que cero.");
+            }
+
+            if (latitud < -90 || latitud > 90 || longitud < -180 || longitud > 180)
+            {
+                return BadRequest("Las coordenadas de latitud y longitud son inválidas.");
+            }
+
 
             Users usu = new Users();
 
@@ -200,7 +215,7 @@ namespace NaivyBeatsApi.Controllers
                 }
 
 
-                string fileName = $"publication.{userId}{fileExtension}";
+                string fileName = $"avatar.{userId}{fileExtension}";
 
 
                 string filePath = Path.Combine(fullPath, fileName);
