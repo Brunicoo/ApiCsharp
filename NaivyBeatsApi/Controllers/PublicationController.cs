@@ -96,7 +96,7 @@ namespace NaivyBeatsApi.Controllers
 
             // Acceder a los datos del formulario
             int userId = Convert.ToInt32(HttpContext.Current.Request.Form["user_id"]);
-            string title = HttpContext.Current.Request.Form["titulo"];
+            string title = HttpContext.Current.Request.Form["title"];
             string description = HttpContext.Current.Request.Form["description"];
 
             // Guardar el archivo
