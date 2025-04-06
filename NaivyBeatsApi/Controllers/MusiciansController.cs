@@ -111,11 +111,7 @@ namespace NaivyBeatsApi.Controllers
                 return BadRequest("Los campos 'styles' o 'times' son inválidos.");
             }
 
-
-
-
             Users usu = new Users();
-
 
             usu.name = name;
             usu.photo = "";
@@ -208,7 +204,9 @@ namespace NaivyBeatsApi.Controllers
         {
             try
             {
-                string fullPath = @"C:\Users\bruno\Desktop\NaivyBeatsApi\NaivyBeatsApi\NaivyBeatsApi\Data\avatar\";
+                string relativePath = Path.Combine("Data", "avatar");
+                string fullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, relativePath);
+
 
                 if (!Directory.Exists(fullPath))
                 {
