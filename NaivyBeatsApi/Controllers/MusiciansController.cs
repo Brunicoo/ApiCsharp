@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -80,6 +81,7 @@ namespace NaivyBeatsApi.Controllers
             return Ok();
         }
 
+
         // POST: api/Musicians
         [ResponseType(typeof(bool))]
         public IHttpActionResult PostMusician()
@@ -96,8 +98,13 @@ namespace NaivyBeatsApi.Controllers
             string phone_number = HttpContext.Current.Request.Form["phone_number"];
             string edition_date = HttpContext.Current.Request.Form["edition_date"];
             int municipality_id = int.Parse(HttpContext.Current.Request.Form["province_id"]);
-            decimal latitud = decimal.Parse(HttpContext.Current.Request.Form["latitud"]);
-            decimal longitud = decimal.Parse(HttpContext.Current.Request.Form["longitud"]);
+            String latitud = HttpContext.Current.Request.Form["latitud"];
+            String longitud = HttpContext.Current.Request.Form["longitud"];
+
+            
+
+            var latitudD = decimal.Parse(latitud, CultureInfo.InvariantCulture);
+            var longitudD = decimal.Parse(longitud, CultureInfo.InvariantCulture);
 
             var stylesJson = HttpContext.Current.Request.Form["styles"];
             List<Style> styles = JsonConvert.DeserializeObject<List<Style>>(stylesJson);
@@ -120,8 +127,8 @@ namespace NaivyBeatsApi.Controllers
             usu.creation_date = DateTime.Now.Date.ToString("yyyy-MM-dd");
             usu.edition_date = DateTime.Now.Date.ToString("yyyy-MM-dd");
             usu.municipality_id = municipality_id;
-            usu.latitud = latitud;
-            usu.longitud = longitud;
+            usu.latitud = latitudD;
+            usu.longitud = longitudD;
             db.Users.Add(usu);
             db.SaveChanges();
 

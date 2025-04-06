@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 using System.Data.Entity.Infrastructure;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -100,10 +101,13 @@ namespace NaivyBeatsApi.Controllers
             string phone_number = HttpContext.Current.Request.Form["phone_number"];
             string edition_date = HttpContext.Current.Request.Form["edition_date"];
             int municipality_id = int.Parse(HttpContext.Current.Request.Form["province_id"]);
-            decimal latitud = decimal.Parse(HttpContext.Current.Request.Form["latitud"]);
-            decimal longitud = decimal.Parse(HttpContext.Current.Request.Form["longitud"]);
+            String latitud = HttpContext.Current.Request.Form["latitud"];
+            String longitud = HttpContext.Current.Request.Form["longitud"];
             string opening_time = HttpContext.Current.Request.Form["opening_time"];
             string closing_time = HttpContext.Current.Request.Form["closing_time"];
+
+            var latitudD = decimal.Parse(latitud, CultureInfo.InvariantCulture);
+            var longitudD = decimal.Parse(longitud, CultureInfo.InvariantCulture);
 
             if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
             {
@@ -115,10 +119,6 @@ namespace NaivyBeatsApi.Controllers
                 return BadRequest("El ID de municipio debe ser mayor que cero.");
             }
 
-            if (latitud < -90 || latitud > 90 || longitud < -180 || longitud > 180)
-            {
-                return BadRequest("Las coordenadas de latitud y longitud son inválidas.");
-            }
 
 
             Users usu = new Users();
@@ -131,8 +131,8 @@ namespace NaivyBeatsApi.Controllers
             usu.creation_date = DateTime.Now.Date.ToString("yyyy-MM-dd");
             usu.edition_date = DateTime.Now.Date.ToString("yyyy-MM-dd");
             usu.municipality_id = municipality_id;
-            usu.latitud = latitud;
-            usu.longitud = longitud;
+            usu.latitud = latitudD;
+            usu.longitud = longitudD;
             db.Users.Add(usu);
             db.SaveChanges();
 

@@ -70,6 +70,15 @@ namespace NaivyBeatsApi.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
+        // GET: api/Users/lolo
+        [Route("api/Users/{name}")]
+        [ResponseType(typeof(int))]
+        public IHttpActionResult getUserIdByName(string name)
+        {
+            Users user = db.Users.FirstOrDefault(u => u.name == name);
+            return Ok(user.user_id);
+        }
+
         // POST: api/Users/Restaurant
         [ResponseType(typeof(Users))]
         public IHttpActionResult PostRestaurant(Users users)
