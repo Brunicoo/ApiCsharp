@@ -87,22 +87,17 @@ namespace NaivyBeatsApi.Controllers
         [ResponseType(typeof(bool))]
         public IHttpActionResult postPublication()
         {
-            // Acceder al archivo
             var file = HttpContext.Current.Request.Files["multimedia_content"];
             if (file == null || file.ContentLength == 0)
             {
                 return BadRequest("No se ha proporcionado ningún archivo.");
             }
-
-            // Acceder a los datos del formulario
             int userId = Convert.ToInt32(HttpContext.Current.Request.Form["user_id"]);
             string title = HttpContext.Current.Request.Form["title"];
             string description = HttpContext.Current.Request.Form["description"];
 
-            // Guardar el archivo
             string savedFilePath = SaveFile(file, userId);
 
-            // Crear la publicación
             Publication p = new Publication
             {
                 user_id = userId,
