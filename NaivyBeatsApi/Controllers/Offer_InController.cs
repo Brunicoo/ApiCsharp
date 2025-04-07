@@ -40,6 +40,16 @@ namespace NaivyBeatsApi.Controllers
             db.Offer_In.Add(of);
             db.SaveChanges();
 
+            foreach (int style_id in of.styles_ids)
+            {
+                Offer_in_Styles ois = new Offer_in_Styles();
+                ois.id_offer_in = of.offer_in_id;
+                ois.style_id = style_id;
+
+                db.Offer_in_Styles.Add(ois);
+            }
+            db.SaveChanges();
+
             return true;
         }
 
