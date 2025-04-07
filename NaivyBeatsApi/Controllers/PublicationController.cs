@@ -20,68 +20,6 @@ namespace NaivyBeatsApi.Controllers
         private NaivyBeatsEntities db = new NaivyBeatsEntities();
 
 
-       
-        //[ResponseType(typeof(bool))]
-        //[HttpPost]
-        //public IHttpActionResult postPublication(PublicationDto publicationDto)
-        //{
-        //    if (publicationDto == null)
-        //    {
-        //        return BadRequest("Los datos del formulario son incorrectos o están incompletos.");
-        //    }
-
-        //    if (string.IsNullOrEmpty(publicationDto.titulo))
-        //    {
-        //        return BadRequest("El campo 'titulo' es obligatorio.");
-        //    }
-
-        //    if (string.IsNullOrEmpty(publicationDto.description))
-        //    {
-        //        return BadRequest("El campo 'description' es obligatorio.");
-        //    }
-
-        //    if (publicationDto.user_id <= 0)
-        //    {
-        //        return BadRequest("El campo 'user_id' es obligatorio y debe ser mayor que 0.");
-        //    }
-
-        //    if (publicationDto.multimedia_content == null || publicationDto.multimedia_content.ContentLength == 0)
-        //    {
-        //        return BadRequest("No se ha proporcionado ningún archivo.");
-        //    }
-
-        //    try
-        //    {
-        //        // Crear una nueva publicación
-        //        Publication p = new Publication
-        //        {
-        //            user_id = publicationDto.user_id,
-        //            titulo = publicationDto.titulo,
-        //            description = publicationDto.description,
-        //            publication_date = DateTime.Now.Date.ToString("yyyy-MM-dd")
-        //        };
-
-        //        string savedFilePath = SaveFile(publicationDto.multimedia_content, publicationDto.user_id);
-        //        if (string.IsNullOrEmpty(savedFilePath))
-        //        {
-        //            return BadRequest("Error al guardar el archivo.");
-        //        }
-
-        //        p.multimedia_content = savedFilePath;
-
-        //        // Guardar la publicación en la base de datos
-        //        db.Publication.Add(p);
-        //        db.SaveChanges();
-
-        //        return Ok(true);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        // Capturar cualquier error inesperado
-        //        return InternalServerError(ex);
-        //    }
-        //}
-
 
         // POST: api/Publication
         [ResponseType(typeof(bool))]
@@ -117,7 +55,8 @@ namespace NaivyBeatsApi.Controllers
         {
             try
             {
-                string fullPath = @"C:\Users\bruno\Desktop\NaivyBeatsApi\NaivyBeatsApi\NaivyBeatsApi\Data\publications\";
+                string relativePath = Path.Combine("Data", "avatar");
+                string fullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, relativePath);
 
                 if (!Directory.Exists(fullPath))
                 {
