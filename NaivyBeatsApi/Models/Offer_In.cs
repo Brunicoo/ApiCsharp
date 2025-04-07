@@ -21,5 +21,6 @@ namespace NaivyBeatsApi.Models
         public Nullable<int> music_id_final { get; set; }
         public Nullable<int> restaurant_id { get; set; }
         public string description { get; set; }
+        public Nullable<byte> done { get; set; }
     }
 }

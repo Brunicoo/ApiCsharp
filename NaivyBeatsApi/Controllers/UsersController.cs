@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
 using NaivyBeatsApi.Models;
@@ -125,6 +128,7 @@ namespace NaivyBeatsApi.Controllers
 
             return Ok(users);
         }
+
 
         protected override void Dispose(bool disposing)
         {
