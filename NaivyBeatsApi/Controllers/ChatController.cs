@@ -1,5 +1,6 @@
 ﻿using NaivyBeatsApi.Models;
 using System;
+using System.Linq;
 using System.Web.Http;
 using System.Web.Http.Description;
 
@@ -24,6 +25,15 @@ namespace NaivyBeatsApi.Controllers
             db.SaveChanges();
 
             return true;
+        }
+
+        // GET: api/Chat
+        [ResponseType(typeof(Chat))]
+        public Chat getChatByMusicianAndRestaurantId(Chat chat)
+        {
+            Chat c = db.Chat.FirstOrDefault(ch => ch.musician_id == chat.musician_id && ch.restaurant_id == chat.restaurant_id);
+
+            return c;
         }
     }
 }
