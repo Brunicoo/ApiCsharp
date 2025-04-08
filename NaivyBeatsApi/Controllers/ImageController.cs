@@ -28,7 +28,7 @@ namespace NaivyBeatsApi.Controllers
             path = HttpUtility.UrlDecode(path);
 
             path = path.Replace("_", "/")
-           .Replace("8", ".") 
+           .Replace(",", ".") 
            .Replace("-", ":");
 
             if (!File.Exists(path))
