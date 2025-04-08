@@ -21,9 +21,16 @@ namespace NaivyBeatsApi.Controllers
 
         // GET: api/Image/{path}
         [Route("api/Image/{path}")]
+        [HttpGet]
         [ResponseType(typeof(HttpResponseMessage))]
         public HttpResponseMessage DownloadImage(string path)
         {
+            path = HttpUtility.UrlDecode(path);
+
+            path = path.Replace("_", "/")
+           .Replace("8", ".") 
+           .Replace("-", ":");
+
             if (!File.Exists(path))
             {
                 return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Archivo no encontrado.");

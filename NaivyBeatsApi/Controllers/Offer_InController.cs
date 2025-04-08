@@ -21,6 +21,13 @@ namespace NaivyBeatsApi.Controllers
         {
             List<Offer_In> offers_In = db.Offer_In.Where(of => of.music_id_final == null).ToList();
 
+            foreach (Offer_In of in offers_In)
+            {
+                of.styles_ids = db.Offer_in_Styles.Where(ois => ois.id_offer_in == of.offer_in_id)
+                                                    .Select(ois => ois.style_id)
+                                                    .ToList();
+            }
+
             return offers_In;
         }
 
@@ -28,6 +35,7 @@ namespace NaivyBeatsApi.Controllers
         [ResponseType(typeof(bool))]
         public bool PostOffer_In(Offer_In offer_In)
         {
+
             Offer_In of = new Offer_In();
             of.event_date = offer_In.event_date;
             of.publish_date = DateTime.Now.Date.ToString("yyyy-MM-dd");
@@ -35,10 +43,11 @@ namespace NaivyBeatsApi.Controllers
             of.description = offer_In.description;
             of.salary = offer_In.salary;
             of.done = 0;
-            of.music_id_final = null;
 
             db.Offer_In.Add(of);
             db.SaveChanges();
+
+            of.styles_ids = offer_In.styles_ids;    
 
             foreach (int style_id in of.styles_ids)
             {
@@ -50,7 +59,7 @@ namespace NaivyBeatsApi.Controllers
             }
             db.SaveChanges();
 
-            return true;
+           return true;
         }
 
         // GET: api/Offer_In/5

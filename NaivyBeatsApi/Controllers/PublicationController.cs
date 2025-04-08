@@ -20,6 +20,14 @@ namespace NaivyBeatsApi.Controllers
         private NaivyBeatsEntities db = new NaivyBeatsEntities();
 
 
+        // GET: api/Publication
+        [ResponseType(typeof(List<Publication>))]
+        public List<Publication> getAllPublications()
+        {
+            List<Publication> p = db.Publication.ToList();
+
+            return p;
+        }
 
         // POST: api/Publication
         [ResponseType(typeof(bool))]
