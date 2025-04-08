@@ -27,11 +27,12 @@ namespace NaivyBeatsApi.Controllers
             return true;
         }
 
-        // GET: api/Chat
+        // GET: api/Chat/2/3
+        [Route("api/Chat/{musician_id}/{restaurant_id}")]
         [ResponseType(typeof(Chat))]
-        public Chat getChatByMusicianAndRestaurantId(Chat chat)
+        public Chat getChatByMusicianAndRestaurantId(int musician_id, int restaurant_id)
         {
-            Chat c = db.Chat.FirstOrDefault(ch => ch.musician_id == chat.musician_id && ch.restaurant_id == chat.restaurant_id);
+            Chat c = db.Chat.FirstOrDefault(ch => ch.musician_id == musician_id && ch.restaurant_id == restaurant_id);
 
             return c;
         }
