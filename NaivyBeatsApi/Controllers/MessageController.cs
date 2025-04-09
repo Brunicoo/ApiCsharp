@@ -1,5 +1,7 @@
 ﻿using NaivyBeatsApi.Models;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web.Http;
 using System.Web.Http.Description;
 
@@ -24,6 +26,16 @@ namespace NaivyBeatsApi.Controllers
             db.SaveChanges();
 
             return true;
+        }
+
+        // GET: api/Message/2
+        [Route("api/Message/{chat_id}")]
+        [ResponseType(typeof(List<Message>))]
+        public List<Message> getMessagesByChatId(int chat_id)
+        {
+            List<Message> messages = db.Message.Where(m => m.chat_id == chat_id).ToList();
+
+            return messages;
         }
     }
 }
