@@ -63,7 +63,7 @@ namespace NaivyBeatsApi.Controllers
         {
             try
             {
-                string relativePath = Path.Combine("Data", "avatar");
+                string relativePath = Path.Combine("Data", "Publications");
                 string fullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, relativePath);
 
                 if (!Directory.Exists(fullPath))

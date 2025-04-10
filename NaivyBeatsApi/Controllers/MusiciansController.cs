@@ -206,7 +206,7 @@ namespace NaivyBeatsApi.Controllers
             return db.Users.Count(e => e.user_id == id) > 0;
         }
 
-        private string SaveFile(HttpPostedFile file, int userId)
+      private string SaveFile(HttpPostedFile file, int userId)
         {
             try
             {
