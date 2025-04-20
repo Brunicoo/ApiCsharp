@@ -158,6 +158,10 @@ namespace NaivyBeatsApi.Controllers
             try
             {
                 var file = HttpContext.Current.Request.Files["photo"];
+                var user_name = HttpContext.Current.Request.Form["user_name"];
+                var description = HttpContext.Current.Request.Form["description"];
+                var user_id = HttpContext.Current.Request.Form["user_id"];
+
                 if (file == null || file.ContentLength == 0)
                 {
                     return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "No se ha proporcionado un archivo válido.");
@@ -178,7 +182,20 @@ namespace NaivyBeatsApi.Controllers
                 string contentType = GetContentType(path);
                 response.Content.Headers.ContentType = new MediaTypeHeaderValue(contentType);
 
-                return response;
+                var user = db.Users.FirstOrDefault(u => u.name == user_name);
+
+                if (user == null)
+                {
+                    user.name = user_name;
+                    user.descripcion = description;
+
+                    db.SaveChanges();
+                } else
+                {
+                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "El usuario ya existe");
+                }
+
+                    return response;
             }
             catch (Exception ex)
             {
