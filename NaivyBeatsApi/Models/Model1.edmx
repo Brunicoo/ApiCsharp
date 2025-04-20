@@ -57,6 +57,8 @@
           <Property Name="reading_date" Type="varchar" MaxLength="50" />
           <Property Name="chat_id" Type="int" />
           <Property Name="user_id" Type="int" />
+          <Property Name="offer" Type="int" />
+          <Property Name="accept" Type="int" />
         </EntityType>
         <EntityType Name="Municipality">
           <Key>
@@ -748,6 +750,8 @@
           <Property Name="reading_date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="chat_id" Type="Int32" />
           <Property Name="user_id" Type="Int32" />
+          <Property Name="offer" Type="Int32" />
+          <Property Name="accept" Type="Int32" />
         </EntityType>
         <EntityType Name="Municipality">
           <Key>
@@ -1412,6 +1416,8 @@
           <EntitySetMapping Name="Message">
             <EntityTypeMapping TypeName="NaivyBeatsModel.Message">
               <MappingFragment StoreEntitySet="Message">
+                <ScalarProperty Name="accept" ColumnName="accept" />
+                <ScalarProperty Name="offer" ColumnName="offer" />
                 <ScalarProperty Name="message_id" ColumnName="message_id" />
                 <ScalarProperty Name="text" ColumnName="text" />
                 <ScalarProperty Name="publish_date" ColumnName="publish_date" />
