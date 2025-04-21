@@ -45,6 +45,7 @@ namespace NaivyBeatsApi.Controllers
             r.municipality_id = user.municipality_id;
             r.latitud = user.latitud;
             r.longitud = user.longitud;
+            r.descripcion = user.descripcion;
 
             return Ok(r);
 

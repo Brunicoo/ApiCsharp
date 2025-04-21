@@ -160,7 +160,7 @@ namespace NaivyBeatsApi.Controllers
                 var file = HttpContext.Current.Request.Files["photo"];
                 var user_name = HttpContext.Current.Request.Form["user_name"];
                 var description = HttpContext.Current.Request.Form["description"];
-                var user_id = HttpContext.Current.Request.Form["user_id"];
+                int user_id = (int)Convert.ToInt32(HttpContext.Current.Request.Form["user_id"]);
 
                 if (file == null || file.ContentLength == 0)
                 {
@@ -182,9 +182,9 @@ namespace NaivyBeatsApi.Controllers
                 string contentType = GetContentType(path);
                 response.Content.Headers.ContentType = new MediaTypeHeaderValue(contentType);
 
-                var user = db.Users.FirstOrDefault(u => u.name == user_name);
+                var user = db.Users.FirstOrDefault(u => u.user_id == user_id);
 
-                if (user == null)
+                if (user != null)
                 {
                     user.name = user_name;
                     user.descripcion = description;
@@ -192,7 +192,7 @@ namespace NaivyBeatsApi.Controllers
                     db.SaveChanges();
                 } else
                 {
-                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "El usuario ya existe");
+                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "El usuario no existe");
                 }
 
                     return response;

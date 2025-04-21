@@ -48,6 +48,7 @@ namespace NaivyBeatsApi.Controllers
             m.municipality_id = user.municipality_id;
             m.latitud = user.latitud;
             m.longitud = user.longitud;
+            m.descripcion = user.descripcion;
 
             int[] style_ids = db.User_Style
                     .Where(us => us.user_id == id)
