@@ -15,7 +15,7 @@ namespace NaivyBeatsApi.Models
     public partial class Musician: Users
     {
         public int user_id { get; set; }
-        public List<Style> Styles { get; set; }
-        public List<time> time { get; set; }
+        public List<Style> Styles { get; set; } = new List<Style>();
+        public List<time> time { get; set; } = new List<time>();
     }
 }
