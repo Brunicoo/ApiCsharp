@@ -16,8 +16,9 @@ namespace NaivyBeatsApi.Controllers
     {
         private NaivyBeatsEntities db = new NaivyBeatsEntities();
 
-        // GET: api/Offer_In
-        public List<Offer_In> GetOffer_In()
+        // GET: api/Offer_In/2
+        [Route("api/Message/{user_id}")]
+        public List<Offer_In> GetOffer_In(int user_id)
         {
             List<Offer_In> offers_In = db.Offer_In.Where(of => of.music_id_final == null).ToList();
 
@@ -62,18 +63,6 @@ namespace NaivyBeatsApi.Controllers
            return true;
         }
 
-        // GET: api/Offer_In/5
-        [ResponseType(typeof(Offer_In))]
-        public IHttpActionResult GetOffer_In(int id)
-        {
-            Offer_In offer_In = db.Offer_In.Find(id);
-            if (offer_In == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(offer_In);
-        }
 
         // PUT: api/Offer_In/5
         [ResponseType(typeof(void))]
