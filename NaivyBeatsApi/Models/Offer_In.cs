@@ -23,5 +23,5 @@ namespace NaivyBeatsApi.Models
         public string description { get; set; }
         public Nullable<byte> done { get; set; }
         public List<int> styles_ids { get; set; } = new List<int>();
-    } 
+    }
 }

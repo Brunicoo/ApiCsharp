@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="ddf9674949e9435591351a184ef70dc8" Name="Diagram1" ZoomLevel="77">
+      <Diagram DiagramId="ddf9674949e9435591351a184ef70dc8" Name="Diagram1" ZoomLevel="72">
         <EntityTypeShape EntityType="NaivyBeatsModel.Chat" Width="1.5" PointX="9.75" PointY="20.5" IsExpanded="true" />
         <EntityTypeShape EntityType="NaivyBeatsModel.City" Width="1.5" PointX="0.75" PointY="19.125" IsExpanded="true" />
         <EntityTypeShape EntityType="NaivyBeatsModel.Comment_Restaurant_Publication" Width="1.5" PointX="12" PointY="31.125" IsExpanded="true" />
@@ -53,6 +53,9 @@
         <AssociationConnector Association="NaivyBeatsModel.FK__Valorar__apprais__0A9D95DB" ManuallyRouted="false" />
         <AssociationConnector Association="NaivyBeatsModel.FK__Valorar__valued___0B91BA14" ManuallyRouted="false" />
         <AssociationConnector Association="NaivyBeatsModel.Follow" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="NaivyBeatsModel.post_offer" Width="1.5" PointX="15" PointY="25.875" />
+        <AssociationConnector Association="NaivyBeatsModel.FK__post_offe__user___02FC7413" />
+        <AssociationConnector Association="NaivyBeatsModel.FK__post_offe__post___03F0984C" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -12,10 +12,10 @@ namespace NaivyBeatsApi.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Musician: Users
+    public partial class post_offer
     {
         public int user_id { get; set; }
-        public List<Style> Styles { get; set; }
-        public List<time> time { get; set; }
+        public int post_id { get; set; }
+        public string creation_date { get; set; }
     }
 }

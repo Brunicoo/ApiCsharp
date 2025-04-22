@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
+using NaivyBeatsApi.DTOS;
 using NaivyBeatsApi.Models;
 
 namespace NaivyBeatsApi.Controllers
@@ -17,8 +18,8 @@ namespace NaivyBeatsApi.Controllers
         private NaivyBeatsEntities db = new NaivyBeatsEntities();
 
         // GET: api/Offer_In/2
-        [Route("api/Message/{user_id}")]
-        public List<Offer_In> GetOffer_In(int user_id)
+        [Route("api/Offer_In/{user_id}")]
+        public List<OfferInDto> GetOffer_In(int user_id)
         {
             List<Offer_In> offers_In = db.Offer_In.Where(of => of.music_id_final == null).ToList();
 
@@ -29,7 +30,34 @@ namespace NaivyBeatsApi.Controllers
                                                     .ToList();
             }
 
-            return offers_In;
+            List<OfferInDto> offersDto = new List<OfferInDto>();
+            foreach (var offer in offers_In)
+            {
+                var exists = db.post_offer.FirstOrDefault(pf => pf.post_id == offer.offer_in_id && pf.user_id == user_id);
+
+                OfferInDto offDto = new OfferInDto();
+                offDto.done = offer.done;
+                offDto.restaurant_id = offer.restaurant_id;
+                offDto.event_date = offer.event_date;
+                offDto.publish_date = offer.publish_date;
+                offDto.description = offer.description;
+                offDto.styles_ids = offer.styles_ids;
+                offDto.music_id_final = offer.music_id_final;
+                offDto.salary = offer.salary;
+                offDto.offer_in_id = offer.offer_in_id;
+
+                if (exists != null)
+                {
+                    offDto.postulated = 1;
+                } else
+                {
+                    offDto.postulated = 0;
+                }  
+
+                offersDto.Add(offDto);
+            }  
+
+            return offersDto;
         }
 
         // POST: api/Offer_In
@@ -63,41 +91,6 @@ namespace NaivyBeatsApi.Controllers
            return true;
         }
 
-
-        // PUT: api/Offer_In/5
-        [ResponseType(typeof(void))]
-        public IHttpActionResult PutOffer_In(int id, Offer_In offer_In)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            if (id != offer_In.offer_in_id)
-            {
-                return BadRequest();
-            }
-
-            db.Entry(offer_In).State = EntityState.Modified;
-
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!Offer_InExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return StatusCode(HttpStatusCode.NoContent);
-        }
 
         // DELETE: api/Offer_In/5
         [ResponseType(typeof(Offer_In))]

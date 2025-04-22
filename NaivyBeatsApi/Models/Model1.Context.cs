@@ -45,5 +45,6 @@ namespace NaivyBeatsApi.Models
         public virtual DbSet<User_Time> User_Time { get; set; }
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<Valorar> Valorar { get; set; }
+        public virtual DbSet<post_offer> post_offer { get; set; }
     }
 }
