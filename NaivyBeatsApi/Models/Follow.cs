@@ -12,16 +12,11 @@ namespace NaivyBeatsApi.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Offer_In
+    public partial class Follow
     {
-        public int offer_in_id { get; set; }
-        public string publish_date { get; set; }
-        public Nullable<int> salary { get; set; }
-        public string event_date { get; set; }
-        public Nullable<int> music_id_final { get; set; }
-        public Nullable<int> restaurant_id { get; set; }
-        public string description { get; set; }
-        public Nullable<byte> done { get; set; }
-        public List<int> styles_ids { get; set; }
+        public int musician_id { get; set; }
+        public int restaurant_id { get; set; }
+        public string follow_date { get; set; }
+        public string delete_date { get; set; }
     }
 }

@@ -11,6 +11,7 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
+using NaivyBeatsApi.DTOS;
 using NaivyBeatsApi.Models;
 
 namespace NaivyBeatsApi.Controllers
@@ -20,13 +21,57 @@ namespace NaivyBeatsApi.Controllers
         private NaivyBeatsEntities db = new NaivyBeatsEntities();
 
 
-        // GET: api/Publication
-        [ResponseType(typeof(List<Publication>))]
-        public List<Publication> getAllPublications()
+        // GET: api/Publication/5
+        [ResponseType(typeof(List<PostLike>))]
+        [Route("api/Publication/{user_id}")]
+        public List<PostLike> getAllPublications(int user_id)
         {
-            List<Publication> p = db.Publication.ToList();
+            List<Publication> posts = db.Publication.ToList();
+            List<PostLike> postsLikes = new List<PostLike>();
+            foreach(var post in posts)
+            {
+                PostLike pl = new PostLike();
+                pl.description = post.description;
+                pl.titulo = post.titulo;
+                pl.multimedia_content = post.multimedia_content;
+                pl.publication_date = post.publication_date;
+                pl.publication_id = post.publication_id;
+                pl.user_id = post.user_id;
 
-            return p;
+                var like = db.Like_Restaurant_Publication.FirstOrDefault(lr => lr.restaurant_id == user_id);
+
+                if (like != null)
+                {
+                    pl.like = 1;
+                } else
+                {
+                    pl.like = 0;
+                }
+
+                var chat = db.Chat.FirstOrDefault(ch => ch.musician_id == pl.user_id && ch.restaurant_id == user_id);
+
+                if (chat != null)
+                {
+                    pl.chat = 1;
+                } else
+                {
+                    pl.chat = 0;
+                }
+
+                var follow = db.Follow.FirstOrDefault(f => f.musician_id == pl.user_id && f.restaurant_id == user_id);
+
+                if (follow != null)
+                {
+                    pl.follow = 1;
+                } else
+                {
+                    pl.follow = 0;
+                }
+                
+                postsLikes.Add(pl);
+            }
+
+            return postsLikes;
         }
 
         // POST: api/Publication

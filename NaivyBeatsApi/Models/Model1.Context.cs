@@ -28,6 +28,7 @@ namespace NaivyBeatsApi.Models
         public virtual DbSet<Chat> Chat { get; set; }
         public virtual DbSet<City> City { get; set; }
         public virtual DbSet<Comment_Restaurant_Publication> Comment_Restaurant_Publication { get; set; }
+        public virtual DbSet<Follow> Follow { get; set; }
         public virtual DbSet<Like_Restaurant_Publication> Like_Restaurant_Publication { get; set; }
         public virtual DbSet<Message> Message { get; set; }
         public virtual DbSet<Municipality> Municipality { get; set; }
@@ -35,6 +36,7 @@ namespace NaivyBeatsApi.Models
         public virtual DbSet<Offer_dir> Offer_dir { get; set; }
         public virtual DbSet<Offer_In> Offer_In { get; set; }
         public virtual DbSet<Offer_in_Styles> Offer_in_Styles { get; set; }
+        public virtual DbSet<post_offer> post_offer { get; set; }
         public virtual DbSet<Publication> Publication { get; set; }
         public virtual DbSet<Restaurant> Restaurant { get; set; }
         public virtual DbSet<Style> Style { get; set; }
@@ -45,6 +47,5 @@ namespace NaivyBeatsApi.Models
         public virtual DbSet<User_Time> User_Time { get; set; }
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<Valorar> Valorar { get; set; }
-        public virtual DbSet<post_offer> post_offer { get; set; }
     }
 }
