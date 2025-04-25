@@ -15,6 +15,8 @@ using System.Web.Http.Description;
 using NaivyBeatsApi.Models;
 using Newtonsoft.Json;
 
+//OFERTAS TOTALES Y ACTUACIONES HECHAS
+
 namespace NaivyBeatsApi.Controllers
 {
     public class RestaurantsController : ApiController
@@ -49,6 +51,37 @@ namespace NaivyBeatsApi.Controllers
 
             return Ok(r);
 
+        }
+
+        // GET: api/Restaurants/Actuaciones
+        [Route("api/Restaurants/Actuaciones/{user_id}")]
+        [ResponseType(typeof(int))]
+        public int getEventsDone(int user_id)
+        {
+            int offersDone = 0;
+            List<Offer_In> offers = db.Offer_In.Where(o => o.restaurant_id == user_id).ToList();
+
+            foreach (Offer_In off in offers)
+            {
+                if (off.done == 1)
+                {
+                    offersDone++;
+                }
+            }
+            return offersDone;
+        }
+
+        // GET: api/Restaurants/Ofertas
+        [Route("api/Restaurants/Ofertas/{user_id}")]
+        [ResponseType(typeof(int))]
+        public int getOffers(int user_id)
+        {
+            int offersP = 0;
+            List<Offer_In> offers = db.Offer_In.Where(o => o.restaurant_id == user_id).ToList();
+
+            offersP = offers.Count();
+
+            return offersP;
         }
 
         // PUT: api/Restaurants/5

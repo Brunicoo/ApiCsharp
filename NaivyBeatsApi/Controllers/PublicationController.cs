@@ -38,7 +38,7 @@ namespace NaivyBeatsApi.Controllers
                 pl.publication_id = post.publication_id;
                 pl.user_id = post.user_id;
 
-                var like = db.Like_Restaurant_Publication.FirstOrDefault(lr => lr.restaurant_id == user_id);
+                var like = db.Like_Restaurant_Publication.FirstOrDefault(lr => lr.restaurant_id == user_id && lr.publication_id == post.publication_id);
 
                 if (like != null)
                 {
@@ -104,6 +104,73 @@ namespace NaivyBeatsApi.Controllers
             return Ok(true);
         }
 
+        // POST: api/Publication/Like
+        [ResponseType(typeof(bool))]
+        [Route("api/Publication/Like")]
+        public bool sendLike()
+        {
+            int user_id = int.Parse(HttpContext.Current.Request.Form["user_id"]);
+            int publication_id = int.Parse(HttpContext.Current.Request.Form["publication_id"]);
+
+            Like_Restaurant_Publication like = new Like_Restaurant_Publication();
+            like.restaurant_id = user_id;
+            like.publication_id = publication_id;
+
+            db.Like_Restaurant_Publication.Add(like);
+            db.SaveChanges();
+
+            return true;
+        }
+
+        // POST: api/Publication/Unlike
+        [ResponseType(typeof(bool))]
+        [Route("api/Publication/Unlike")]
+        public bool unlike()
+        {
+            int user_id = int.Parse(HttpContext.Current.Request.Form["user_id"]);
+            int publication_id = int.Parse(HttpContext.Current.Request.Form["publication_id"]);
+
+            var like_restaurant = db.Like_Restaurant_Publication.FirstOrDefault(lk => lk.restaurant_id == user_id && lk.publication_id == publication_id);
+
+            db.Like_Restaurant_Publication.Remove(like_restaurant);
+            db.SaveChanges();
+
+            return true;
+        }
+
+        // POST: api/Publication/Follow
+        [ResponseType(typeof(bool))]
+        [Route("api/Publication/Follow")]
+        public bool sendFollow()
+        {
+            int restaurant_id = int.Parse(HttpContext.Current.Request.Form["restaurant_id"]);
+            int musician_id = int.Parse(HttpContext.Current.Request.Form["musician_id"]);
+
+            Follow follow = new Follow();
+            follow.restaurant_id = restaurant_id;
+            follow.musician_id = musician_id;
+            
+            db.Follow.Add(follow);
+            db.SaveChanges();
+
+            return true;
+        }
+
+        // POST: api/Publication/Unfollow
+        [ResponseType(typeof(bool))]
+        [Route("api/Publication/Unfollow")]
+        public bool unfollow()
+        {
+            int restaurant_id = int.Parse(HttpContext.Current.Request.Form["restaurant_id"]);
+            int musician_id = int.Parse(HttpContext.Current.Request.Form["musician_id"]);
+
+            var follow = db.Follow.FirstOrDefault(f => f.musician_id == musician_id && f.restaurant_id == restaurant_id);
+
+            db.Follow.Remove(follow);
+            db.SaveChanges();
+
+            return true;
+        }
         private string SaveFile(HttpPostedFile file, int userId)
         {
             try

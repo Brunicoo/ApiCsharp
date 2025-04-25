@@ -61,8 +61,8 @@ namespace NaivyBeatsApi.Controllers
         }
 
         // POST: api/Offer_In
-        [ResponseType(typeof(bool))]
-        public bool PostOffer_In(Offer_In offer_In)
+        [ResponseType(typeof(int))]
+        public int PostOffer_In(Offer_In offer_In)
         {
 
             Offer_In of = new Offer_In();
@@ -88,7 +88,7 @@ namespace NaivyBeatsApi.Controllers
             }
             db.SaveChanges();
 
-           return true;
+           return of.offer_in_id;
         }
 
 

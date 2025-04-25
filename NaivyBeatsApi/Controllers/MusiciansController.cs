@@ -75,6 +75,38 @@ namespace NaivyBeatsApi.Controllers
             return Ok(m);
         }
 
+        // GET: api/Musicians/Follows/2
+        [Route("api/Musicians/Follows/{user_id}")]
+        [ResponseType(typeof(int))]
+        public int getFollows(int user_id)
+        {
+            List<Follow> follows = db.Follow.Where(f => f.musician_id == user_id).ToList();
+            int followsNumber = follows.Count();
+
+            return followsNumber;
+        }
+
+        // GET: api/Musicians/Likes/2
+        [Route("api/Musicians/Likes/{user_id}")]
+        [ResponseType(typeof(int))]
+        public int getLikes(int user_id)
+        {
+            int totalLikes = 0;
+            List<Like_Restaurant_Publication> allLikes = db.Like_Restaurant_Publication.ToList();
+            List<Publication> publications = db.Publication.Where(p => p.user_id == user_id).ToList();
+            foreach (var lk in allLikes)
+            {
+                foreach (var p in publications)
+                {
+                    if (lk.publication_id == p.publication_id)
+                    {
+                        totalLikes++;
+                    }
+                }
+            }
+            return totalLikes;
+        }
+
         // PUT: api/Musicians/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutMusician(int id, Musician musician)
