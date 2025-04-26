@@ -6,6 +6,7 @@ using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
 using NaivyBeatsApi.DTOS;
@@ -90,6 +91,36 @@ namespace NaivyBeatsApi.Controllers
 
            return of.offer_in_id;
         }
+
+        // POST: api/Offer_In/Response
+        [ResponseType(typeof(bool))]
+        [Route("api/Offer_In/Response")]
+        public bool responseOffer()
+        {
+            int offer_response = int.Parse(HttpContext.Current.Request.Form["offer_response"]);
+            int message_id = int.Parse(HttpContext.Current.Request.Form["message_id"]);
+            int musician_id = int.Parse(HttpContext.Current.Request.Form["musician_id"]);
+
+            var message = db.Message.FirstOrDefault(m => m.message_id == message_id);
+            message.accept = offer_response;
+
+            db.SaveChanges();
+
+            if (offer_response == 1)
+            {
+                var offer = db.Offer_In.FirstOrDefault(of => of.offer_in_id == message.offer);
+                offer.music_id_final = musician_id;
+
+                db.SaveChanges();
+
+                return true;
+            } else
+            {
+                return false;
+            }
+    
+        }
+
 
 
         // DELETE: api/Offer_In/5
