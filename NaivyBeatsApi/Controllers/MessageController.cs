@@ -21,6 +21,7 @@ namespace NaivyBeatsApi.Controllers
             m.publish_date = DateTime.Now.Date.ToString("yyyy-MM-dd");
             m.chat_id = message.chat_id;
             m.user_id = message.user_id;
+            m.offer = message.offer;
 
             db.Message.Add(m);
             db.SaveChanges();

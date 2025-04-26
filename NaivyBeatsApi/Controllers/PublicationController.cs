@@ -74,6 +74,19 @@ namespace NaivyBeatsApi.Controllers
             return postsLikes;
         }
 
+        // GET: api/Publication/GetLikes/2
+        [ResponseType(typeof(int))]
+        [Route("api/Publication/GetLikes/{publication_id}")]
+        public int getLikes(int publication_id)
+        {
+            List<Like_Restaurant_Publication> lk = db.Like_Restaurant_Publication.Where(l => l.publication_id == publication_id).ToList();
+
+            int likes = lk.Count();
+
+            return likes;
+        }
+
+
         // POST: api/Publication
         [ResponseType(typeof(bool))]
         public IHttpActionResult postPublication()
