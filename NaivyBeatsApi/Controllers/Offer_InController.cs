@@ -69,8 +69,19 @@ namespace NaivyBeatsApi.Controllers
             int musician_id = int.Parse(HttpContext.Current.Request.Form["musician_id"]);
 
             List<post_offer> post_offers = db.post_offer.Where(po => po.user_id == musician_id).ToList();
+            List<Offer_In> offers = new List<Offer_In>();
 
             foreach(var po in post_offers)
+            {
+                var offer = db.Offer_In.FirstOrDefault(o => o.offer_in_id == po.post_id && o.restaurant_id == restaurant_id && o.music_id_final == null);
+
+                if (offer != null)
+                {
+                    offers.Add(offer);
+                }
+            }
+
+            return offers;
         }
 
         // POST: api/Offer_In
