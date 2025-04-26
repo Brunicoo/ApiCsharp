@@ -61,22 +61,29 @@ namespace NaivyBeatsApi.Controllers
             return offersDto;
         }
 
-        //GET: api/Offer_In/ListOffers
-        [Route("api/Offer_In/ListOffers")]
-        public List<Offer_In> getOffers()
+        //GET: api/Offer_In/ListOffers/2/3
+        [Route("api/Offer_In/ListOffers/{restaurant_id}/{musician_id}")]
+        public List<Offer_In> getOffers(int restaurant_id, int musician_id)
         {
-            int restaurant_id = int.Parse(HttpContext.Current.Request.Form["restaurant_id"]);
-            int musician_id = int.Parse(HttpContext.Current.Request.Form["musician_id"]);
-
-            List<post_offer> post_offers = db.post_offer.Where(po => po.user_id == musician_id).ToList();
             List<Offer_In> offers = new List<Offer_In>();
+            List<Offer_in_Styles> styles = new List<Offer_in_Styles>();
+            List<post_offer> post_offers = db.post_offer.Where(po => po.user_id == musician_id).ToList();
 
-            foreach(var po in post_offers)
+            foreach (var po in post_offers)
             {
                 var offer = db.Offer_In.FirstOrDefault(o => o.offer_in_id == po.post_id && o.restaurant_id == restaurant_id && o.music_id_final == null);
 
                 if (offer != null)
                 {
+                    List<int> styles_ids = db.Offer_in_Styles.Where(os => os.id_offer_in == offer.offer_in_id)
+                                .Select(us => us.style_id)
+                                .ToList();
+
+                    foreach(int style_id in styles_ids)
+                    {
+                        offer.styles_ids.Add(style_id);
+
+                    }
                     offers.Add(offer);
                 }
             }
