@@ -61,6 +61,18 @@ namespace NaivyBeatsApi.Controllers
             return offersDto;
         }
 
+        //GET: api/Offer_In/ListOffers
+        [Route("api/Offer_In/ListOffers")]
+        public List<Offer_In> getOffers()
+        {
+            int restaurant_id = int.Parse(HttpContext.Current.Request.Form["restaurant_id"]);
+            int musician_id = int.Parse(HttpContext.Current.Request.Form["musician_id"]);
+
+            List<post_offer> post_offers = db.post_offer.Where(po => po.user_id == musician_id).ToList();
+
+            foreach(var po in post_offers)
+        }
+
         // POST: api/Offer_In
         [ResponseType(typeof(int))]
         public int PostOffer_In(Offer_In offer_In)
